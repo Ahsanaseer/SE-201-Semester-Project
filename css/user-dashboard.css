@@ -8,11 +8,10 @@
 
 .dashboard-card {
     background: var(--bg-card);
-    border-radius: 10px;
-    padding: 30px;
+    border-radius: 2px;
+    padding: 20px;
     text-align: center;
-    box-shadow: 0 5px 15px var(--shadow);
-    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px var(--shadow);
     cursor: pointer;
     text-decoration: none;
     color: inherit;
@@ -20,20 +19,20 @@
 }
 
 .dashboard-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px var(--shadow);
-    border-color: var(--accent-blue);
+    border-color: #ffffff;
 }
 
 .dashboard-card h3 {
     color: var(--text-primary);
-    margin-bottom: 15px;
-    font-size: 1.5em;
+    margin-bottom: 12px;
+    font-size: 1.25em;
+    font-weight: 400;
 }
 
 .dashboard-card p {
     color: var(--text-secondary);
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    font-size: 0.9em;
 }
 
 .dashboard-card .icon {
@@ -44,19 +43,21 @@
 /* Navigation Styles */
 .nav-bar {
     background: var(--bg-card);
-    padding: 15px 30px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    padding: 12px 20px;
+    border-radius: 2px;
+    margin-bottom: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 10px var(--shadow);
+    box-shadow: 0 1px 4px var(--shadow);
     border: 1px solid var(--border-color);
 }
 
 .nav-bar h2 {
     color: var(--text-primary);
     margin: 0;
+    font-weight: 400;
+    font-size: 1.1em;
 }
 
 .nav-bar .nav-links {

@@ -1,18 +1,18 @@
 /* Modern Dashboard Styles - Inspired by Crypto Dashboard */
 :root {
-    --sidebar-bg: #0f1419;
-    --sidebar-hover: #1a1f2e;
-    --sidebar-active: #2d1b4e;
-    --main-bg: #0a0e27;
-    --card-bg: #1a1f3a;
-    --card-border: #2d3748;
+    --sidebar-bg: #000000;
+    --sidebar-hover: #0a0a0a;
+    --sidebar-active: #111111;
+    --main-bg: #000000;
+    --card-bg: #111111;
+    --card-border: #333333;
     --text-primary: #ffffff;
-    --text-secondary: #b8bcc8;
-    --accent-purple: #8b5cf6;
-    --accent-pink: #ec4899;
-    --accent-blue: #3b82f6;
-    --gradient-purple: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-    --gradient-blue: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    --text-secondary: #cccccc;
+    --accent-purple: #ffffff;
+    --accent-pink: #ffffff;
+    --accent-blue: #ffffff;
+    --gradient-purple: #ffffff;
+    --gradient-blue: #ffffff;
 }
 
 body {
@@ -31,7 +31,7 @@ body {
 
 /* Sidebar Styles */
 .sidebar {
-    width: 260px;
+    width: 240px;
     background: var(--sidebar-bg);
     border-right: 1px solid var(--card-border);
     display: flex;
@@ -43,22 +43,22 @@ body {
 }
 
 .sidebar-logo {
-    padding: 24px 20px;
+    padding: 16px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     border-bottom: 1px solid var(--card-border);
 }
 
 .logo-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--gradient-purple);
-    border-radius: 12px;
+    width: 32px;
+    height: 32px;
+    background: #ffffff;
+    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: #000000;
 }
 
 .logo-icon svg {
@@ -67,45 +67,39 @@ body {
 }
 
 .logo-text {
-    font-size: 18px;
-    font-weight: 700;
-    background: var(--gradient-purple);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffff;
 }
 
 .sidebar-menu {
     flex: 1;
-    padding: 20px 0;
+    padding: 16px 0;
 }
 
 .menu-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 20px;
+    gap: 10px;
+    padding: 10px 16px;
     color: var(--text-secondary);
     text-decoration: none;
-    transition: all 0.2s ease;
     cursor: pointer;
-    border-left: 3px solid transparent;
-    border-radius: 8px;
-    margin: 2px 8px;
+    border-left: 2px solid transparent;
+    border-radius: 0;
+    margin: 1px 0;
 }
 
 .menu-item:hover {
     background: var(--sidebar-hover);
     color: var(--text-primary);
     text-decoration: none;
-    border-radius: 8px;
 }
 
 .menu-item.active {
     background: var(--sidebar-active);
     color: var(--text-primary);
-    border-left-color: var(--accent-purple);
-    border-radius: 8px;
+    border-left-color: #ffffff;
 }
 
 .menu-icon {
@@ -124,13 +118,13 @@ body {
 
 .menu-text {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 /* Main Content Area */
 .main-content {
     flex: 1;
-    margin-left: 260px;
+    margin-left: 240px;
     padding: 0;
     background: var(--main-bg);
 }
@@ -139,7 +133,7 @@ body {
 .top-header {
     background: var(--card-bg);
     border-bottom: 1px solid var(--card-border);
-    padding: 20px 32px;
+    padding: 16px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -149,8 +143,8 @@ body {
 }
 
 .header-title {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 400;
     color: var(--text-primary);
     margin: 0;
 }
@@ -166,10 +160,10 @@ body {
     align-items: center;
     background: var(--sidebar-bg);
     border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 10px 16px;
+    border-radius: 2px;
+    padding: 8px 12px;
     gap: 8px;
-    min-width: 300px;
+    min-width: 280px;
 }
 
 .search-bar input {
@@ -192,40 +186,36 @@ body {
 }
 
 .btn-connect {
-    background: var(--gradient-purple);
-    color: white;
+    background: #ffffff;
+    color: #000000;
     border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 8px 16px;
+    border-radius: 2px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 400;
     cursor: pointer;
-    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .btn-connect:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+    background: #e0e0e0;
 }
 
 .logout-icon-btn {
     background: transparent;
     border: none;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 6px;
+    border-radius: 2px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
 }
 
 .logout-icon-btn:hover {
-    background: rgba(239, 68, 68, 0.1);
-    transform: translateY(-2px);
+    background: var(--sidebar-hover);
 }
 
 .logout-icon-btn svg {
@@ -235,139 +225,115 @@ body {
 
 /* Content Area */
 .content-area {
-    padding: 32px;
+    padding: 24px;
 }
 
 /* Stats Cards Grid */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin-bottom: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
 }
 
 .stat-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 24px;
-    transition: all 0.3s ease;
+    border-radius: 2px;
+    padding: 16px;
 }
 
 .stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    border-color: var(--accent-purple);
+    border-color: #ffffff;
 }
 
 .stat-label {
-    font-size: 14px;
+    font-size: 12px;
     color: var(--text-secondary);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-weight: 400;
 }
 
 .stat-value {
-    font-size: 32px;
-    font-weight: 700;
-    background: var(--gradient-purple);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 8px;
+    font-size: 24px;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 6px;
 }
 
 .stat-change {
     font-size: 12px;
-    color: #10b981;
+    color: #ffffff;
 }
 
 /* Hero Card */
 .hero-card {
-    background: linear-gradient(to right, #141e30, #243b55);
-    border-radius: 16px;
-    padding: 40px;
-    margin-bottom: 32px;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    animation: pulse 4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.6; }
+    background: var(--card-bg);
+    border-radius: 2px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid var(--card-border);
 }
 
 .hero-label {
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    opacity: 0.9;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-weight: 400;
 }
 
 .hero-title {
-    font-size: 36px;
-    font-weight: 800;
-    margin-bottom: 16px;
-    line-height: 1.2;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    line-height: 1.3;
 }
 
 .hero-description {
-    font-size: 16px;
-    opacity: 0.9;
-    margin-bottom: 24px;
-    line-height: 1.6;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.5;
 }
 
 .hero-button {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 2px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 400;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .hero-button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
+    background: #e0e0e0;
 }
 
 /* Data Table Section */
 .data-section {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 32px;
+    border-radius: 2px;
+    padding: 20px;
+    margin-bottom: 24px;
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 }
 
 .section-title {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 400;
     color: var(--text-primary);
     margin: 0;
 }
@@ -381,18 +347,17 @@ body {
     background: transparent;
     border: 1px solid var(--card-border);
     color: var(--text-secondary);
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 400;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .tab-button.active {
-    background: var(--gradient-purple);
-    border-color: transparent;
-    color: white;
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
 }
 
 .tab-button:hover:not(.active) {
@@ -411,24 +376,23 @@ body {
 }
 
 .data-table th {
-    padding: 12px 16px;
+    padding: 10px 12px;
     text-align: left;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 400;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .data-table td {
-    padding: 16px;
+    padding: 12px;
     border-bottom: 1px solid var(--card-border);
     color: var(--text-primary);
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .data-table tbody tr {
-    transition: all 0.2s ease;
 }
 
 .data-table tbody tr:hover {
@@ -441,57 +405,59 @@ body {
 
 .badge {
     display: inline-block;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 400;
 }
 
 .badge-success {
-    background: rgba(16, 185, 129, 0.2);
-    color: #10b981;
+    background: var(--bg-card);
+    color: #ffffff;
+    border: 1px solid var(--card-border);
 }
 
 .badge-danger {
-    background: rgba(239, 68, 68, 0.2);
-    color: #ef4444;
+    background: var(--bg-card);
+    color: #ffffff;
+    border: 1px solid var(--card-border);
 }
 
 .badge-warning {
-    background: rgba(245, 158, 11, 0.2);
-    color: #f59e0b;
+    background: var(--bg-card);
+    color: #ffffff;
+    border: 1px solid var(--card-border);
 }
 
 .action-btn {
-    background: rgba(239, 68, 68, 0.2);
-    color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    padding: 6px 12px;
-    border-radius: 6px;
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid var(--card-border);
+    padding: 5px 10px;
+    border-radius: 2px;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 400;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .action-btn:hover {
-    background: rgba(239, 68, 68, 0.3);
-    transform: translateY(-1px);
+    background: var(--sidebar-hover);
+    border-color: #ffffff;
 }
 
 .select-input {
     background: var(--sidebar-bg);
     border: 1px solid var(--card-border);
     color: var(--text-primary);
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 2px;
+    font-size: 13px;
     cursor: pointer;
     outline: none;
 }
 
 .select-input:focus {
-    border-color: var(--accent-purple);
+    border-color: #ffffff;
 }
 
 /* User Profile Section */
@@ -499,20 +465,19 @@ body {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 260px;
+    width: 240px;
     background: var(--sidebar-bg);
     border-top: 1px solid var(--card-border);
-    padding: 16px;
+    padding: 12px;
 }
 
 .user-profile {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
+    padding: 6px;
+    border-radius: 0;
 }
 
 .user-profile:hover {
@@ -520,15 +485,16 @@ body {
 }
 
 .user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--gradient-purple);
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
 }
 
 .user-info {
@@ -536,8 +502,8 @@ body {
 }
 
 .user-name {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 400;
     color: var(--text-primary);
     margin-bottom: 2px;
 }
@@ -584,12 +550,11 @@ body {
 }
 
 .alert {
-    padding: 16px 20px;
-    border-radius: 12px;
-    margin-bottom: 12px;
+    padding: 12px 16px;
+    border-radius: 2px;
+    margin-bottom: 10px;
     display: none;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     animation: slideInRight 0.3s ease-out;
 }
 
@@ -598,15 +563,15 @@ body {
 }
 
 .alert-success {
-    background: rgba(16, 185, 129, 0.2);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    color: #10b981;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: #ffffff;
 }
 
 .alert-error {
-    background: rgba(239, 68, 68, 0.2);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    color: #ef4444;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: #ffffff;
 }
 
 @keyframes slideInRight {
@@ -684,12 +649,12 @@ body {
     display: none;
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 8px;
+    border-radius: 2px;
+    padding: 6px;
     cursor: pointer;
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 16px;
+    left: 16px;
     z-index: 1001;
     color: var(--text-primary);
     align-items: center;
@@ -739,12 +704,12 @@ body {
 .modal-content {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 16px;
+    border-radius: 2px;
     width: 100%;
-    max-width: 450px;
+    max-width: 420px;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
     animation: slideUp 0.3s ease;
 }
 
@@ -763,13 +728,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px;
+    padding: 20px;
     border-bottom: 1px solid var(--card-border);
 }
 
 .modal-header h2 {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 400;
     color: var(--text-primary);
     margin: 0;
 }
@@ -778,17 +743,16 @@ body {
     background: transparent;
     border: none;
     color: var(--text-secondary);
-    font-size: 32px;
+    font-size: 24px;
     cursor: pointer;
     line-height: 1;
     padding: 0;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
-    transition: all 0.2s ease;
+    border-radius: 2px;
 }
 
 .modal-close:hover {
@@ -797,7 +761,7 @@ body {
 }
 
 .modal-body {
-    padding: 24px;
+    padding: 20px;
 }
 
 .login-form-modal .form-group {
@@ -806,27 +770,25 @@ body {
 
 .login-form-modal .form-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     color: var(--text-primary);
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 400;
 }
 
 .login-form-modal .form-group input {
     width: 100%;
-    padding: 12px 16px;
+    padding: 10px;
     background: var(--sidebar-bg);
     border: 1px solid var(--card-border);
-    border-radius: 8px;
-    font-size: 15px;
+    border-radius: 2px;
+    font-size: 14px;
     color: var(--text-primary);
-    transition: all 0.2s ease;
 }
 
 .login-form-modal .form-group input:focus {
     outline: none;
-    border-color: var(--accent-purple);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    border-color: #ffffff;
 }
 
 .login-form-modal .form-group input::placeholder {
@@ -891,10 +853,9 @@ body {
 }
 
 .login-form-modal .forgot-password {
-    color: var(--accent-purple);
+    color: #ffffff;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
+    font-weight: 400;
 }
 
 .login-form-modal .forgot-password:hover {
@@ -903,21 +864,18 @@ body {
 
 .login-form-modal .sign-in-btn {
     width: 100%;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 8px;
-    background: #572CEF;
-    color: white;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 2px;
+    background: #ffffff;
+    color: #000000;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .login-form-modal .sign-in-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(87, 44, 239, 0.4);
-    background: #4a25d4;
+    background: #e0e0e0;
 }
 
 .login-form-modal .login-footer {
@@ -934,10 +892,9 @@ body {
 }
 
 .login-form-modal .login-footer a {
-    color: var(--accent-purple);
+    color: #ffffff;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
+    font-weight: 400;
 }
 
 .login-form-modal .login-footer a:hover {
@@ -966,23 +923,23 @@ body {
 .login-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 40px;
+    border-radius: 2px;
+    padding: 32px;
     width: 100%;
-    max-width: 450px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-width: 420px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
 }
 
 .login-header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 .login-header h1 {
-    font-size: 2em;
-    font-weight: 700;
+    font-size: 1.75em;
+    font-weight: 400;
     color: var(--text-primary);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .login-header p {
@@ -1001,9 +958,9 @@ body {
 
 .login-form .form-group label {
     color: var(--text-primary);
-    font-size: 0.9em;
-    font-weight: 600;
-    margin-bottom: 8px;
+    font-size: 0.85em;
+    font-weight: 400;
+    margin-bottom: 6px;
     display: block;
 }
 
@@ -1011,16 +968,14 @@ body {
     background: var(--sidebar-bg);
     border: 1px solid var(--card-border);
     color: var(--text-primary);
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 15px;
-    transition: all 0.2s ease;
+    padding: 10px;
+    border-radius: 2px;
+    font-size: 14px;
     width: 100%;
 }
 
 .login-form .form-group input:focus {
-    border-color: var(--accent-purple);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    border-color: #ffffff;
     outline: none;
 }
 
@@ -1090,10 +1045,9 @@ body {
 }
 
 .login-form .forgot-password {
-    color: var(--accent-purple);
+    color: #ffffff;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
+    font-weight: 400;
 }
 
 .login-form .forgot-password:hover {
@@ -1102,22 +1056,19 @@ body {
 
 .login-form .sign-in-btn {
     width: 100%;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 2px;
     margin-bottom: 0;
-    background: #572CEF;
-    color: white;
+    background: #ffffff;
+    color: #000000;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .login-form .sign-in-btn:hover {
-    background: #4a25d4;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(87, 44, 239, 0.4);
+    background: #e0e0e0;
 }
 
 .login-form .login-footer {
@@ -1134,10 +1085,9 @@ body {
 }
 
 .login-form .login-footer a {
-    color: var(--accent-purple);
+    color: #ffffff;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
+    font-weight: 400;
 }
 
 .login-form .login-footer a:hover {
@@ -1155,11 +1105,11 @@ body {
     }
 
     .login-card {
-        padding: 30px 24px;
+        padding: 24px 20px;
     }
 
     .login-header h1 {
-        font-size: 1.75em;
+        font-size: 1.5em;
     }
 
     .login-form .form-options {

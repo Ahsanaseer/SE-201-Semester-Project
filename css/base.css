@@ -6,25 +6,24 @@
 }
 
 :root {
-    --bg-primary: #0a0e27;
-    --bg-secondary: #1a1f3a;
-    --bg-card: #1e2338;
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0a;
+    --bg-card: #111111;
     --text-primary: #ffffff;
-    --text-secondary: #b8bcc8;
-    --accent-blue: #2563eb;
-    --accent-dark-blue: #1e40af;
-    --accent-light-blue: #3b82f6;
-    --border-color: #2d3748;
-    --shadow: rgba(0, 0, 0, 0.5);
+    --text-secondary: #cccccc;
+    --accent-blue: #ffffff;
+    --accent-dark-blue: #e0e0e0;
+    --accent-light-blue: #ffffff;
+    --border-color: #333333;
+    --shadow: rgba(0, 0, 0, 0.3);
 }
 
 body {
     font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, var(--bg-primary) 0%, #000000 100%);
+    background: #000000;
     min-height: 100vh;
     padding: 0;
     color: var(--text-primary);
-    transition: background 0.3s ease;
 }
 
 body .container {
@@ -39,12 +38,11 @@ body .container {
 /* Card Styles */
 .card {
     background: var(--bg-card);
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 10px 30px var(--shadow);
-    margin-bottom: 20px;
+    border-radius: 2px;
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow);
+    margin-bottom: 16px;
     border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
 }
 
 /* Header Styles */
@@ -55,14 +53,13 @@ header {
 }
 
 header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px var(--shadow);
+    font-size: 2em;
+    margin-bottom: 8px;
+    font-weight: 500;
 }
 
 header p {
-    font-size: 1.2em;
-    opacity: 0.9;
+    font-size: 1em;
     color: var(--text-secondary);
 }
 
@@ -73,30 +70,28 @@ header p {
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     background: var(--bg-secondary);
-    border: 2px solid var(--border-color);
-    border-radius: 5px;
-    font-size: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    font-size: 14px;
     color: var(--text-primary);
-    transition: all 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    border-color: #ffffff;
 }
 
 .form-group input::placeholder,
@@ -111,38 +106,35 @@ header p {
 
 /* Button Styles */
 .btn {
-    padding: 12px 30px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 2px;
+    font-size: 14px;
     cursor: pointer;
-    transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
     text-align: center;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .btn-primary {
-    background: #572CEF;
-    color: white;
+    background: #ffffff;
+    color: #000000;
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(87, 44, 239, 0.4);
-    background: #4a25d4;
+    background: #e0e0e0;
 }
 
 .btn-secondary {
-    background: var(--bg-secondary);
+    background: transparent;
     color: var(--text-primary);
-    border: 2px solid var(--border-color);
+    border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
     background: var(--bg-card);
-    border-color: var(--accent-blue);
+    border-color: #ffffff;
 }
 
 /* Back to Dashboard Button */
@@ -154,42 +146,37 @@ header p {
 
 .btn-back-to-dashboard {
     display: inline-block;
-    padding: 12px 24px;
-    background: #572CEF;
-    color: white;
+    padding: 10px 20px;
+    background: #ffffff;
+    color: #000000;
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.2s ease;
+    border-radius: 2px;
+    font-weight: 400;
     border: none;
     cursor: pointer;
 }
 
 .btn-back-to-dashboard:hover {
-    background: #4a25d4;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(87, 44, 239, 0.4);
+    background: #e0e0e0;
     text-decoration: none;
 }
 
 .btn-danger {
-    background: #dc3545;
-    color: white;
+    background: #ffffff;
+    color: #000000;
 }
 
 .btn-danger:hover {
-    background: #c82333;
-    transform: translateY(-2px);
+    background: #e0e0e0;
 }
 
 .btn-success {
-    background: #28a745;
-    color: white;
+    background: #ffffff;
+    color: #000000;
 }
 
 .btn-success:hover {
-    background: #218838;
-    transform: translateY(-2px);
+    background: #e0e0e0;
 }
 
 .btn-block {
@@ -203,9 +190,8 @@ header p {
 
 /* Links */
 a {
-    color: var(--accent-light-blue);
+    color: #ffffff;
     text-decoration: none;
-    transition: color 0.3s ease;
 }
 
 a:hover {
@@ -225,9 +211,9 @@ select option {
 
 /* Alert/Toast Styles */
 .alert {
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    padding: 12px;
+    border-radius: 2px;
+    margin-bottom: 16px;
     display: none;
 }
 
@@ -237,15 +223,15 @@ select option {
 }
 
 .alert-success {
-    background: rgba(40, 167, 69, 0.2);
-    color: #28a745;
-    border: 1px solid rgba(40, 167, 69, 0.3);
+    background: var(--bg-card);
+    color: #ffffff;
+    border: 1px solid var(--border-color);
 }
 
 .alert-error {
-    background: rgba(220, 53, 69, 0.2);
-    color: #dc3545;
-    border: 1px solid rgba(220, 53, 69, 0.3);
+    background: var(--bg-card);
+    color: #ffffff;
+    border: 1px solid var(--border-color);
 }
 
 @keyframes slideIn {
@@ -261,13 +247,13 @@ select option {
 
 /* Loading Spinner */
 .spinner {
-    border: 4px solid var(--border-color);
-    border-top: 4px solid var(--accent-blue);
+    border: 2px solid var(--border-color);
+    border-top: 2px solid #ffffff;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     animation: spin 1s linear infinite;
-    margin: 20px auto;
+    margin: 16px auto;
 }
 
 @keyframes spin {
@@ -278,7 +264,7 @@ select option {
 /* Responsive Design */
 @media (max-width: 768px) {
     header h1 {
-        font-size: 2em;
+        font-size: 1.5em;
     }
 }
 
