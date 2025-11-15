@@ -322,6 +322,7 @@
     <script type="module">
         import { getCurrentUser, logOut, onAuthStateChange, signIn } from './js/login.js';
         import { getUserDonations } from './js/donor.js';
+        import { getUserRequests } from './js/request.js';
 
         const userNameSpan = document.getElementById('userName');
         const userRole = document.getElementById('userRole');
@@ -522,40 +523,102 @@
             }
         });
 
+        // Current filter state
+        let currentActivityFilter = 'all'; // 'all', 'donations', 'requests'
+        let currentUserEmail = null;
+
         // Function to load and display recent activity
-        async function loadRecentActivity(userEmail) {
+        async function loadRecentActivity(userEmail, filter = 'all') {
             const activityContainer = document.getElementById('recentActivityContainer');
             if (!activityContainer) return;
 
+            currentUserEmail = userEmail;
+            currentActivityFilter = filter;
+
             try {
-                const result = await getUserDonations(userEmail);
-                
-                if (result.success && result.donations && result.donations.length > 0) {
-                    // Display donations
+                let donations = [];
+                let requests = [];
+
+                // Load donations if needed
+                if (filter === 'all' || filter === 'donations') {
+                    const donationsResult = await getUserDonations(userEmail);
+                    if (donationsResult.success && donationsResult.donations) {
+                        donations = donationsResult.donations.map(d => ({ ...d, type: 'donation' }));
+                    }
+                }
+
+                // Load requests if needed
+                if (filter === 'all' || filter === 'requests') {
+                    const requestsResult = await getUserRequests(userEmail);
+                    if (requestsResult.success && requestsResult.requests) {
+                        requests = requestsResult.requests.map(r => ({ ...r, type: 'request' }));
+                    }
+                }
+
+                // Combine and sort by date
+                let allActivities = [];
+                if (filter === 'all') {
+                    allActivities = [...donations, ...requests];
+                } else if (filter === 'donations') {
+                    allActivities = donations;
+                } else if (filter === 'requests') {
+                    allActivities = requests;
+                }
+
+                // Sort by timestamp descending (most recent first)
+                allActivities.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                if (allActivities.length > 0) {
+                    // Display activities
                     let html = '<div style="display: flex; flex-direction: column; gap: 16px; text-align: left;">';
                     
-                    result.donations.slice(0, 5).forEach(donation => {
-                        const date = new Date(donation.timestamp);
+                    allActivities.slice(0, 10).forEach(activity => {
+                        const date = new Date(activity.timestamp);
                         const formattedDate = date.toLocaleDateString('en-US', { 
                             year: 'numeric', 
                             month: 'short', 
                             day: 'numeric' 
                         });
-                        
-                        html += `
-                            <div style="background: var(--card-bg); border-radius: 0.5rem; display: flex; justify-content: space-between; align-items: left;">
-                                <div style="flex: 1; text-align: left;">
-                                    <div style="font-size: 16px; color: var(--text-primary); margin-bottom: 4px;">${donation.fullName}</div>
-                                    <div style="font-size: 14px; color: var(--text-secondary);">
-                                        Blood Group: <span style="color: var(--text-primary);">${donation.bloodGroup}</span>  
-                                        Availability: <span style="color: ${donation.availability === 'Yes' ? '#28a745' : '#dc3545'}">${donation.availability}</span>
+
+                        if (activity.type === 'donation') {
+                            html += `
+                                <div style="background: var(--card-bg); border-radius: 0.5rem; padding: 16px; border-left: 3px solid #3b82f6;">
+                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                                        <div style="flex: 1;">
+                                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                                                <span style="font-size: 11px; font-weight: 500; color: #3b82f6; background: rgba(59, 130, 246, 0.1); padding: 2px 8px; border-radius: 4px;">DONATION</span>
+                                                <div style="font-size: 16px; color: var(--text-primary); font-weight: 500;">${activity.fullName}</div>
+                                            </div>
+                                            <div style="font-size: 14px; color: var(--text-secondary);">
+                                                Blood Group: <span style="color: var(--text-primary);">${activity.bloodGroup}</span>  
+                                                Availability: <span style="color: ${activity.availability === 'Yes' ? '#28a745' : '#dc3545'}">${activity.availability}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div style="font-size: 12px; color: var(--text-secondary); margin-top: 8px; opacity: 0.7;">${formattedDate}</div>
                                 </div>
-                                <div style="margin-left: 16px; color: var(--accent-purple);">
+                            `;
+                        } else if (activity.type === 'request') {
+                            const statusColor = activity.status === 'completed' ? '#10b981' : '#f59e0b';
+                            const statusText = activity.status === 'completed' ? 'Completed' : 'Pending';
+                            html += `
+                                <div style="background: var(--card-bg); border-radius: 0.5rem; padding: 16px; border-left: 3px solid #ef4444;">
+                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                                        <div style="flex: 1;">
+                                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                                                <span style="font-size: 11px; font-weight: 500; color: #ef4444; background: rgba(239, 68, 68, 0.1); padding: 2px 8px; border-radius: 4px;">REQUEST</span>
+                                                <div style="font-size: 16px; color: var(--text-primary); font-weight: 500;">Blood Group: ${activity.bloodGroup}</div>
+                                            </div>
+                                            <div style="font-size: 14px; color: var(--text-secondary);">
+                                                ${activity.requestedDonorName ? `Requested from: <span style="color: var(--text-primary);">${activity.requestedDonorName}</span>` : ''}
+                                                Status: <span style="color: ${statusColor}">${statusText}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 12px; color: var(--text-secondary); margin-top: 8px; opacity: 0.7;">${formattedDate}</div>
                                 </div>
-                            </div>
-                        `;
+                            `;
+                        }
                     });
                     
                     html += '</div>';
@@ -563,7 +626,13 @@
                     activityContainer.style.textAlign = 'left';
                     activityContainer.style.padding = '20px';
                 } else {
-                    // No donations found
+                    // No activities found
+                    const emptyMessage = filter === 'donations' 
+                        ? 'No donations found. Start by donating blood!'
+                        : filter === 'requests'
+                        ? 'No requests found. Make a blood request!'
+                        : 'No recent activity. Start by donating blood or making a request';
+                    
                     activityContainer.innerHTML = `
                         <div style="width: 48px; height: 48px; margin: 0 auto 16px; opacity: 0.5; color: var(--text-secondary);">
                             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -572,8 +641,10 @@
                             </svg>
                         </div>
                         <div style="font-size: 16px;">No recent activity</div>
-                        <div style="font-size: 14px; margin-top: 8px; opacity: 0.7;">Start by donating blood or making a request</div>
+                        <div style="font-size: 14px; margin-top: 8px; opacity: 0.7;">${emptyMessage}</div>
                     `;
+                    activityContainer.style.textAlign = 'center';
+                    activityContainer.style.padding = '40px';
                 }
             } catch (error) {
                 console.error('Error loading recent activity:', error);
@@ -582,6 +653,55 @@
                 `;
             }
         }
+
+        // Tab button event listeners for Recent Activity section
+        function setupActivityTabs() {
+            // Find the Recent Activity section by finding the section that contains recentActivityContainer
+            const activityContainer = document.getElementById('recentActivityContainer');
+            if (!activityContainer) return;
+            
+            const activitySection = activityContainer.closest('.data-section');
+            if (!activitySection) return;
+            
+            const tabButtons = activitySection.querySelectorAll('.section-tabs .tab-button');
+            
+            // Remove existing listeners by cloning and replacing
+            tabButtons.forEach((button) => {
+                const newButton = button.cloneNode(true);
+                button.parentNode.replaceChild(newButton, button);
+            });
+            
+            // Add new event listeners
+            const newTabButtons = activitySection.querySelectorAll('.section-tabs .tab-button');
+            newTabButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons in this section
+                    newTabButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Determine filter based on button text
+                    const filter = button.textContent.trim().toLowerCase();
+                    const filterMap = {
+                        'all': 'all',
+                        'donations': 'donations',
+                        'requests': 'requests'
+                    };
+                    
+                    const selectedFilter = filterMap[filter] || 'all';
+                    
+                    // Reload activity with new filter
+                    if (currentUserEmail) {
+                        loadRecentActivity(currentUserEmail, selectedFilter);
+                    }
+                });
+            });
+        }
+        
+        // Setup tabs after DOM is ready
+        setTimeout(() => {
+            setupActivityTabs();
+        }, 100);
 
         // Check auth state
         onAuthStateChange(async (user) => {
@@ -616,6 +736,10 @@
                 // Load recent activity for logged-in user
                 if (user.email) {
                     loadRecentActivity(user.email);
+                    // Setup tabs after loading activity
+                    setTimeout(() => {
+                        setupActivityTabs();
+                    }, 200);
                 }
             } else {
                 // No user - ensure logged-out state

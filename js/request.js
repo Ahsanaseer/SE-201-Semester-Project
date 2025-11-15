@@ -97,3 +97,38 @@ export async function createBloodRequest(userEmail, requestBlood, fullName, requ
     }
 }
 
+/**
+ * Get requests for a specific user by email
+ */
+export async function getUserRequests(userEmail) {
+    try {
+        const querySnapshot = await getDocs(collection(db, 'allRequests'));
+        const requests = [];
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            // Only include requests from this user
+            if (data.userEmail === userEmail) {
+                requests.push({ 
+                    id: doc.id,
+                    requesterName: data.fullName || data.userEmail || 'Unknown',
+                    bloodGroup: data.requestBlood || data.bloodGroup || '-',
+                    contact: data.contact || '-',
+                    department: data.department || '-',
+                    reason: data.reason || '-',
+                    timestamp: data.timestamp,
+                    status: data.status || 'pending',
+                    userEmail: data.userEmail,
+                    fullName: data.fullName || data.userEmail,
+                    requestedDonorId: data.requestedDonorId || null,
+                    requestedDonorName: data.requestedDonorName || null
+                });
+            }
+        });
+        // Sort by timestamp descending (most recent first)
+        requests.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        return { success: true, requests: requests };
+    } catch (error) {
+        return { success: false, error: error.message };
+    }
+}
+
