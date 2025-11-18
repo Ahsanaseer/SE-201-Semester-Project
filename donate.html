@@ -22,8 +22,6 @@
 
 
         <div class="card" style="max-width: 700px; margin: 0 auto;">
-            <div id="alertContainer"></div>
-
             <h2 style="text-align: center; color: var(--text-primary); margin-bottom: 30px;">Donor Information Form</h2>
             <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
                 Please fill in your details to register as a blood donor. Your information will help connect you with those in need.
@@ -96,9 +94,9 @@
     <script type="module">
         import { addDonor } from './js/donor.js';
         import { getCurrentUser, onAuthStateChange } from './js/login.js';
+        import { showSuccessToast, showErrorToast } from './js/toast.js';
 
         const donateForm = document.getElementById('donateForm');
-        const alertContainer = document.getElementById('alertContainer');
 
         // Check auth state
         onAuthStateChange((user) => {
@@ -106,21 +104,6 @@
                 window.location.href = 'index.html';
             }
         });
-
-        function showAlert(message, type = 'success') {
-            alertContainer.innerHTML = `
-                <div class="alert alert-${type} show">
-                    ${message}
-                </div>
-            `;
-            setTimeout(() => {
-                const alert = alertContainer.querySelector('.alert');
-                if (alert) {
-                    alert.classList.remove('show');
-                    setTimeout(() => alertContainer.innerHTML = '', 300);
-                }
-            }, 3000);
-        }
 
         donateForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -141,12 +124,12 @@
             const result = await addDonor(formData);
 
             if (result.success) {
-                showAlert('Donor information submitted successfully! Thank you for your contribution.', 'success');
+                showSuccessToast('Donor information submitted successfully! Thank you for your contribution.');
                 setTimeout(() => {
                     donateForm.reset();
                 }, 2000);
             } else {
-                showAlert(result.error || 'Failed to submit donor information. Please try again.', 'error');
+                showErrorToast(result.error || 'Failed to submit donor information. Please try again.');
             }
         });
     </script>

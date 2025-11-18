@@ -276,6 +276,112 @@ select option {
     }
 }
 
+/* Toast Notification Styles */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    pointer-events: none;
+    max-width: 90%;
+    width: 100%;
+    max-width: 500px;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    min-width: 300px;
+    max-width: 100%;
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    pointer-events: auto;
+    position: relative;
+}
+
+.toast-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast-hiding {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+}
+
+.toast-message {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.toast-success {
+    background: #10b981;
+    color: #ffffff;
+    border-color: #059669;
+}
+
+.toast-error {
+    background: #ef4444;
+    color: #ffffff;
+    border-color: #dc2626;
+}
+
+.toast-close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: currentColor;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+.toast-close:hover {
+    opacity: 1;
+}
+
+.toast-close svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .toast-container {
+        top: 10px;
+        max-width: 95%;
+    }
+    
+    .toast {
+        min-width: auto;
+        width: 100%;
+        padding: 12px 16px;
+    }
+}
+
 /* Loading Spinner */
 .spinner {
     border: 2px solid var(--border-color);

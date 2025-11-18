@@ -7,6 +7,7 @@ import {
     updateProfile
 } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 import { auth } from './firebase-config.js';
+import { showSuccessToast, showErrorToast } from './toast.js';
 
 // Admin credentials (hardcoded)
 const ADMIN_EMAIL = 'admin@gmail.com';
@@ -159,21 +160,6 @@ if (loginCard && signupCard && signinForm && signupForm) {
     setupPasswordToggle(signupPasswordToggle, signupPasswordInput);
     setupPasswordToggle(confirmPasswordToggle, confirmPasswordInput);
 
-    function showAlert(message, type = 'success') {
-        alertContainer.innerHTML = `
-            <div class="alert alert-${type} show">
-                ${message}
-            </div>
-        `;
-        setTimeout(() => {
-            const alert = alertContainer.querySelector('.alert');
-            if (alert) {
-                alert.classList.remove('show');
-                setTimeout(() => alertContainer.innerHTML = '', 300);
-            }
-        }, 3000);
-    }
-
     function clearAlerts() {
         alertContainer.innerHTML = '';
     }
@@ -194,13 +180,13 @@ if (loginCard && signupCard && signinForm && signupForm) {
                 sessionStorage.setItem('adminLoggedIn', 'true');
                 sessionStorage.setItem('adminEmail', email);
                 
-                showAlert('Admin login successful! Redirecting...', 'success');
+                showSuccessToast('Admin login successful! Redirecting...');
                 setTimeout(() => {
                     window.location.href = 'admin-dashboard.html?admin=true';
                 }, 1000);
             } else {
                 // Regular user login
-                showAlert('Login successful! Redirecting...', 'success');
+                showSuccessToast('Login successful! Redirecting...');
                 setTimeout(() => {
                     window.location.href = 'index.html';
                 }, 1000);
@@ -220,7 +206,7 @@ if (loginCard && signupCard && signinForm && signupForm) {
                 errorMessage = 'Invalid Email Format! Please Check Your Email.';
             }
             
-            showAlert(errorMessage, 'error');
+            showErrorToast(errorMessage);
         }
     });
 
@@ -235,17 +221,17 @@ if (loginCard && signupCard && signinForm && signupForm) {
 
         // Validation
         if (!name || name.trim() === '') {
-            showAlert('Please enter your name!', 'error');
+            showErrorToast('Please enter your name!');
             return;
         }
 
         if (password !== confirmPassword) {
-            showAlert('Passwords do not match!', 'error');
+            showErrorToast('Passwords do not match!');
             return;
         }
 
         if (password.length < 6) {
-            showAlert('Password must be at least 6 characters long!', 'error');
+            showErrorToast('Password must be at least 6 characters long!');
             return;
         }
 
@@ -253,13 +239,13 @@ if (loginCard && signupCard && signinForm && signupForm) {
         const result = await signUp(email, password, name);
 
         if (result.success) {
-            showAlert('Account created successfully! Redirecting...', 'success');
+            showSuccessToast('Account created successfully! Redirecting...');
             setTimeout(() => {
                 window.location.href = 'index.html';
             }, 2000);
         } else {
             // signUp already provides formatted error messages
-            showAlert(result.error || 'Sign up failed. Please try again.', 'error');
+            showErrorToast(result.error || 'Sign up failed. Please try again.');
         }
     });
 }

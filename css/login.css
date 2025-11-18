@@ -20,6 +20,181 @@
     }
 }
 
+/* Standalone Login/Signup Page Styles */
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: radial-gradient(130% 120% at 15% 10%, #1d2429 0%, #050607 70%, #050607 100%);
+}
+
+.login-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.5rem;
+    padding: 32px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.login-header h1 {
+    font-size: 1.75em;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.login-header p {
+    font-size: 0.95em;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.login-form {
+    margin-top: 0;
+}
+
+.login-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-form .form-group label {
+    color: var(--text-primary);
+    font-size: 0.85em;
+    font-weight: 400;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.login-form .form-group input {
+    background: var(--sidebar-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    padding: 10px;
+    border-radius: 0.5rem;
+    font-size: 14px;
+    width: 100%;
+}
+
+.login-form .form-group input:focus {
+    border-color: #ffffff;
+    outline: none;
+}
+
+.login-form .form-group input::placeholder {
+    color: var(--text-secondary);
+}
+
+.login-form .password-input-wrapper {
+    position: relative;
+}
+
+.login-form .password-input-wrapper input {
+    padding-right: 45px;
+}
+
+.login-form .password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+.login-form .password-toggle:hover {
+    opacity: 0.8;
+}
+
+.login-form .password-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+.login-form .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 0.9em;
+}
+
+.login-form .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    user-select: none;
+}
+
+.login-form .remember-me input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--accent-purple);
+}
+
+.login-form .remember-me span {
+    color: var(--text-secondary);
+}
+
+.login-form .forgot-password {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.login-form .forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-form .sign-in-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 0.5rem;
+    margin-bottom: 0;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    cursor: pointer;
+}
+
+.login-form .sign-in-btn:hover {
+    background: #e0e0e0;
+    border-radius: 0.5rem;
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--card-border);
+}
+
+.login-footer p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0;
+}
+
 .login-footer a {
     color: #ffffff;
     text-decoration: none;
@@ -30,5 +205,34 @@
 .login-footer a:hover {
     opacity: 0.8;
     text-decoration: underline;
+}
+
+.login-form #alertContainer {
+    margin-bottom: 20px;
+}
+
+/* Responsive Design for Login Pages */
+@media (max-width: 768px) {
+    .login-wrapper {
+        padding: 15px;
+    }
+
+    .login-card {
+        padding: 24px 20px;
+    }
+
+    .login-header h1 {
+        font-size: 1.5em;
+    }
+
+    .login-form .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .login-form .forgot-password {
+        align-self: flex-end;
+    }
 }
 

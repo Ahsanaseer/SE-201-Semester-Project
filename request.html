@@ -20,8 +20,6 @@
         </div>
 
         <div class="card">
-            <div id="alertContainer"></div>
-
             <h2 style="text-align: center; color: var(--text-primary); margin-bottom: 30px;">Search for Available Donors</h2>
 
             <div class="filter-section">
@@ -68,10 +66,10 @@
         import { getAllDonors, getFilteredDonors } from './js/donor.js';
         import { onAuthStateChange, getCurrentUser } from './js/login.js';
         import { createBloodRequest } from './js/request.js';
+        import { showSuccessToast, showErrorToast } from './js/toast.js';
 
         const searchBtn = document.getElementById('searchBtn');
         const donorsContainer = document.getElementById('donorsContainer');
-        const alertContainer = document.getElementById('alertContainer');
 
         // Check auth state
         onAuthStateChange((user) => {
@@ -79,21 +77,6 @@
                 window.location.href = 'index.html';
             }
         });
-
-        function showAlert(message, type = 'success') {
-            alertContainer.innerHTML = `
-                <div class="alert alert-${type} show">
-                    ${message}
-                </div>
-            `;
-            setTimeout(() => {
-                const alert = alertContainer.querySelector('.alert');
-                if (alert) {
-                    alert.classList.remove('show');
-                    setTimeout(() => alertContainer.innerHTML = '', 300);
-                }
-            }, 3000);
-        }
 
         function displayDonors(donors) {
             if (donors.length === 0) {
@@ -161,7 +144,7 @@
                     const user = getCurrentUser();
                     
                     if (!user || !user.email) {
-                        showAlert('Please log in to request blood.', 'error');
+                        showErrorToast('Please log in to request blood.');
                         return;
                     }
                     
@@ -174,12 +157,12 @@
                     const result = await createBloodRequest(user.email, bloodGroup, fullName, donorId, donorName);
                     
                     if (result.success) {
-                        showAlert(`Blood request for ${bloodGroup} from ${donorName} submitted successfully!`, 'success');
+                        showSuccessToast(`Blood request for ${bloodGroup} from ${donorName} submitted successfully!`);
                         button.textContent = 'Requested';
                         button.disabled = true;
                         button.style.opacity = '0.6';
                     } else {
-                        showAlert('Failed to submit request. Please try again.', 'error');
+                        showErrorToast('Failed to submit request. Please try again.');
                         button.disabled = false;
                         button.textContent = 'Request Blood';
                     }
@@ -200,7 +183,7 @@
                         result.donors;
                     displayDonors(filtered);
                 } else {
-                    showAlert('Failed to fetch donors. Please try again.', 'error');
+                    showErrorToast('Failed to fetch donors. Please try again.');
                 }
             } else {
                 // Get filtered donors
@@ -208,7 +191,7 @@
                 if (result.success) {
                     displayDonors(result.donors);
                 } else {
-                    showAlert('Failed to fetch donors. Please try again.', 'error');
+                    showErrorToast('Failed to fetch donors. Please try again.');
                 }
             }
         });

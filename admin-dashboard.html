@@ -106,7 +106,6 @@
 
             <!-- Content Area -->
             <div class="content-area">
-                <div id="alertContainer" class="alert-container"></div>
 
                 <!-- Dashboard Page -->
                 <div id="page-dashboard" class="page-content">
@@ -282,10 +281,10 @@
         import { getAdminData, adminDeleteDonor, adminDeleteRequest, adminUpdateDonorAvailability, approveRequest } from './js/admin.js';
         import { getCurrentUser, logOut, onAuthStateChange, isAdmin } from './js/login.js';
         import { getAllDonors } from './js/donor.js';
+        import { showSuccessToast, showErrorToast } from './js/toast.js';
 
         const donorsContainer = document.getElementById('donorsContainer');
         const requestsContainer = document.getElementById('requestsContainer');
-        const alertContainer = document.getElementById('alertContainer');
         const refreshBtn = document.getElementById('refreshBtn');
         const logoutBtn = document.getElementById('logoutBtn');
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -457,21 +456,6 @@
 
                 loadData();
             });
-        }
-
-        function showAlert(message, type = 'success') {
-            alertContainer.innerHTML = `
-                <div class="alert alert-${type} show">
-                    ${message}
-                </div>
-            `;
-            setTimeout(() => {
-                const alert = alertContainer.querySelector('.alert');
-                if (alert) {
-                    alert.classList.remove('show');
-                    setTimeout(() => alertContainer.innerHTML = '', 300);
-                }
-            }, 3000);
         }
 
         async function loadData() {
@@ -832,10 +816,10 @@
                     const availability = e.target.value;
                     const result = await adminUpdateDonorAvailability(donorId, availability);
                     if (result.success) {
-                        showAlert('Donor availability updated successfully!', 'success');
+                        showSuccessToast('Donor availability updated successfully!');
                         loadData();
                     } else {
-                        showAlert('Failed to update availability.', 'error');
+                        showErrorToast('Failed to update availability.');
                         loadData();
                     }
                 });
@@ -963,10 +947,10 @@
             if (confirmed) {
                 const result = await adminDeleteDonor(donorId);
                 if (result.success) {
-                    showAlert('Donor deleted successfully!', 'success');
+                    showSuccessToast('Donor deleted successfully!');
                     loadData();
                 } else {
-                    showAlert('Failed to delete donor.', 'error');
+                    showErrorToast('Failed to delete donor.');
                 }
             }
         };
@@ -980,10 +964,10 @@
             if (confirmed) {
                 const result = await adminDeleteRequest(requestId);
                 if (result.success) {
-                    showAlert('Request deleted successfully!', 'success');
+                    showSuccessToast('Request deleted successfully!');
                     loadData();
                 } else {
-                    showAlert('Failed to delete request.', 'error');
+                    showErrorToast('Failed to delete request.');
                 }
             }
         };
@@ -1000,17 +984,17 @@
             if (confirmed) {
                 const result = await approveRequest(requestId, bloodGroup, requestedDonorId || null);
                 if (result.success) {
-                    showAlert(`Request approved successfully! Donor ${result.donorName} has been assigned.`, 'success');
+                    showSuccessToast(`Request approved successfully! Donor ${result.donorName} has been assigned.`);
                     loadData();
                 } else {
-                    showAlert(result.error || 'Failed to approve request.', 'error');
+                    showErrorToast(result.error || 'Failed to approve request.');
                 }
             }
         };
 
         refreshBtn.addEventListener('click', () => {
             loadData();
-            showAlert('Data refreshed!', 'success');
+            showSuccessToast('Data refreshed!');
             
             // Refresh analytics if on analytics page
             const currentPage = document.querySelector('.page-content[style*="block"]') || document.querySelector('.page-content:not([style*="none"])');
