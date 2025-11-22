@@ -7,12 +7,15 @@
 
 /* Hide scrollbars but keep scrolling functionality */
 * {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
 }
 
 *::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
+    /* Chrome, Safari, Opera */
 }
 
 :root {
@@ -25,26 +28,26 @@
     --sidebar-hover: #0a0a0a;
     --sidebar-active: #111111;
     --card-bg: #111111;
-    
+
     /* Text Colors */
     --text-primary: #ffffff;
     --text-secondary: #cccccc;
-    
+
     /* Border Colors */
     --border-color: #333333;
     --card-border: #333333;
-    
+
     /* Accent Colors */
     --accent-blue: #ffffff;
     --accent-dark-blue: #e0e0e0;
     --accent-light-blue: #ffffff;
     --accent-purple: #ffffff;
     --accent-pink: #ffffff;
-    
+
     /* Gradients (now solid colors) */
     --gradient-purple: #ffffff;
     --gradient-blue: #ffffff;
-    
+
     /* Shadows */
     --shadow: rgba(0, 0, 0, 0.3);
 }
@@ -270,6 +273,7 @@ select option {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -374,7 +378,7 @@ select option {
         top: 10px;
         max-width: 95%;
     }
-    
+
     .toast {
         min-width: auto;
         width: 100%;
@@ -394,8 +398,13 @@ select option {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Responsive Design */
@@ -404,4 +413,3 @@ select option {
         font-size: 1.5em;
     }
 }
-
