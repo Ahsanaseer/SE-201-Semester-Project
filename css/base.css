@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Hide scrollbars but keep scrolling functionality */
@@ -53,7 +54,7 @@
 }
 
 body {
-    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: #000000;
     min-height: 100vh;
     padding: 0;
@@ -71,12 +72,9 @@ body .container {
 
 /* Card Styles */
 .card {
-    background: var(--bg-card);
-    border-radius: 0.5rem;
+
     padding: 20px;
-    box-shadow: 0 2px 8px var(--shadow);
-    margin-bottom: 16px;
-    border: 1px solid var(--border-color);
+
 }
 
 /* Header Styles */

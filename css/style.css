@@ -3,7 +3,6 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: radial-gradient(130% 120% at 15% 10%, #1d2429 0%, #050607 70%, #050607 100%);
     color: var(--text-primary);
     overflow-x: hidden;

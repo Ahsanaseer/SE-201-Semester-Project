@@ -158,7 +158,6 @@
 .history-id {
     font-size: 11px;
     color: var(--text-secondary);
-    font-family: monospace;
     opacity: 0.6;
 }
 

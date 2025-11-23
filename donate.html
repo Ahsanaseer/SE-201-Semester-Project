@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donate Blood - Pulse Chain GIKI</title>
     <link rel="icon" type="image/png" href="PICS/Pulse Chain GIKI.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/donate.css">
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1 style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px; flex-shrink: 0; margin: 0; padding: 0; display: block; margin-top: -4px;">
-                    <path d="M12 2c-2.5 0-4.5 2-4.5 4.5 0 3 4.5 7.5 4.5 7.5s4.5-4.5 4.5-7.5c0-2.5-2-4.5-4.5-4.5z" fill="currentColor" transform="scale(1 -1) translate(0 -24)"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    style="width: 48px; height: 48px; flex-shrink: 0; margin: 0; padding: 0; display: block; margin-top: -4px;">
+                    <path d="M12 2c-2.5 0-4.5 2-4.5 4.5 0 3 4.5 7.5 4.5 7.5s4.5-4.5 4.5-7.5c0-2.5-2-4.5-4.5-4.5z"
+                        fill="currentColor" transform="scale(1 -1) translate(0 -24)" />
                 </svg>
                 <span>Pulse Chain GIKI</span>
             </h1>
@@ -24,7 +33,8 @@
         <div class="card" style="max-width: 700px; margin: 0 auto;">
             <h2 style="text-align: center; color: var(--text-primary); margin-bottom: 30px;">Donor Information Form</h2>
             <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
-                Please fill in your details to register as a blood donor. Your information will help connect you with those in need.
+                Please fill in your details to register as a blood donor. Your information will help connect you with
+                those in need.
             </p>
 
             <form id="donateForm">
@@ -39,28 +49,59 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="gender">Gender *</label>
-                    <select id="gender" name="gender" required>
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                    </select>
+                    <label>Gender *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="gender" value="Male" required>
+                            <span class="radio-label">Male</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="gender" value="Female" required>
+                            <span class="radio-label">Female</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="gender" value="Other" required>
+                            <span class="radio-label">Other</span>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="bloodGroup">Blood Group *</label>
-                    <select id="bloodGroup" name="bloodGroup" required>
-                        <option value="">Select Blood Group</option>
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
-                    </select>
+                    <label>Blood Group *</label>
+                    <div class="radio-group blood-group-grid">
+                        <label class="radio-option">
+                            <input type="radio" name="bloodGroup" value="A+" required>
+                            <span class="radio-label">A+</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="bloodGroup" value="A-" required>
+                            <span class="radio-label">A-</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="bloodGroup" value="B+" required>
+                            <span class="radio-label">B+</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="bloodGroup" value="B-" required>
+                            <span class="radio-label">B-</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="bloodGroup" value="AB+" required>
+                            <span class="radio-label">AB+</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="bloodGroup" value="AB-" required>
+                            <span class="radio-label">AB-</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="bloodGroup" value="O+" required>
+                            <span class="radio-label">O+</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="bloodGroup" value="O-" required>
+                            <span class="radio-label">O-</span>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -69,17 +110,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="availability">Donor Availability *</label>
-                    <select id="availability" name="availability" required>
-                        <option value="">Select Availability</option>
-                        <option value="Yes">Yes, Available</option>
-                        <option value="No">No, Not Available</option>
-                    </select>
+                    <label for="medicalNote">Medical Notes (Optional)</label>
+                    <textarea id="medicalNote" name="medicalNote"
+                        placeholder="Any medical conditions or notes..."></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="medicalNote">Medical Notes (Optional)</label>
-                    <textarea id="medicalNote" name="medicalNote" placeholder="Any medical conditions or notes..."></textarea>
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                        <span class="checkbox-label">I agree to share my information with those in need and confirm that
+                            all details provided are accurate *</span>
+                    </label>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">Submit Donor Information</button>
@@ -112,10 +153,10 @@
             const formData = {
                 fullName: document.getElementById('fullName').value,
                 age: parseInt(document.getElementById('age').value),
-                gender: document.getElementById('gender').value,
-                bloodGroup: document.getElementById('bloodGroup').value,
+                gender: document.querySelector('input[name="gender"]:checked')?.value || '',
+                bloodGroup: document.querySelector('input[name="bloodGroup"]:checked')?.value || '',
                 contact: document.getElementById('contact').value,
-                availability: document.getElementById('availability').value,
+                availability: 'Yes', // Default to Yes
                 medicalNote: document.getElementById('medicalNote').value,
                 userEmail: user ? user.email : '',
                 userId: user ? user.uid : ''
@@ -134,5 +175,5 @@
         });
     </script>
 </body>
-</html>
 
+</html>

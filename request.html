@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Blood - Pulse Chain GIKI</title>
     <link rel="icon" type="image/png" href="PICS/Pulse Chain GIKI.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/request.css">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -15,12 +21,9 @@
             <p>Request Blood</p>
         </header>
 
-        <div class="nav-bar">
-            <h2>Find Blood Donors</h2>
-        </div>
-
         <div class="card">
-            <h2 style="text-align: center; color: var(--text-primary); margin-bottom: 30px;">Search for Available Donors</h2>
+            <h2 style="text-align: center; color: var(--text-primary); margin-bottom: 30px;">Search for Available Donors
+            </h2>
 
             <div class="filter-section">
                 <div class="form-group">
@@ -117,10 +120,10 @@
                         <td><span style="color: ${donor.availability === 'Yes' ? '#28a745' : '#dc3545'}">${donor.availability}</span></td>
                         <td>${donor.medicalNote || '-'}</td>
                         <td>
-                            ${donor.availability === 'Yes' ? 
-                                `<button class="btn btn-primary btn-sm request-blood-btn" data-blood-group="${donor.bloodGroup}" data-donor-id="${donor.id}" data-donor-name="${donor.fullName}" style="padding: 6px 12px; font-size: 14px;">Request Blood</button>` 
-                                : '<span style="color: var(--text-secondary);">-</span>'
-                            }
+                            ${donor.availability === 'Yes' ?
+                        `<button class="btn btn-primary btn-sm request-blood-btn" data-blood-group="${donor.bloodGroup}" data-donor-id="${donor.id}" data-donor-name="${donor.fullName}" style="padding: 6px 12px; font-size: 14px;">Request Blood</button>`
+                        : '<span style="color: var(--text-secondary);">-</span>'
+                    }
                         </td>
                     </tr>
                 `;
@@ -133,7 +136,7 @@
             `;
 
             donorsContainer.innerHTML = html;
-            
+
             // Add event listeners to request blood buttons
             const requestButtons = donorsContainer.querySelectorAll('.request-blood-btn');
             requestButtons.forEach(button => {
@@ -142,20 +145,20 @@
                     const donorId = button.getAttribute('data-donor-id');
                     const donorName = button.getAttribute('data-donor-name');
                     const user = getCurrentUser();
-                    
+
                     if (!user || !user.email) {
                         showErrorToast('Please log in to request blood.');
                         return;
                     }
-                    
+
                     // Disable button to prevent multiple clicks
                     button.disabled = true;
                     button.textContent = 'Requesting...';
-                    
+
                     // Get user's display name (full name) from Firebase Auth
                     const fullName = user.displayName || user.email;
                     const result = await createBloodRequest(user.email, bloodGroup, fullName, donorId, donorName);
-                    
+
                     if (result.success) {
                         showSuccessToast(`Blood request for ${bloodGroup} from ${donorName} submitted successfully!`);
                         button.textContent = 'Requested';
@@ -178,8 +181,8 @@
                 // Get all available donors
                 const result = await getAllDonors();
                 if (result.success) {
-                    const filtered = availability ? 
-                        result.donors.filter(d => d.availability === availability) : 
+                    const filtered = availability ?
+                        result.donors.filter(d => d.availability === availability) :
                         result.donors;
                     displayDonors(filtered);
                 } else {
@@ -197,5 +200,5 @@
         });
     </script>
 </body>
-</html>
 
+</html>
