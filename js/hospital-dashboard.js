@@ -21,6 +21,7 @@ const userNameSpan = document.getElementById('userName');
 const userRole = document.getElementById('userRole');
 const userAvatar = document.getElementById('userAvatar');
 const userProfile = document.getElementById('userProfile');
+const closeProfileModal = document.getElementById('closeProfileModal');
 const logoutBtn = document.getElementById('logoutBtn');
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const sidebar = document.getElementById('sidebar');
@@ -37,14 +38,27 @@ let currentFilter = 'all';
 /**
  * Initialize UI to logged-out state
  */
-function initializeLoggedOutState() {
-    isLoggedIn = false;
-    userNameSpan.textContent = 'Login';
-    userRole.textContent = 'Click to sign in';
-    userAvatar.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
-    logoutBtn.style.display = 'none';
-    userProfile.style.cursor = 'pointer';
-}
+// Check auth state
+onAuthStateChange((user) => {
+    if (!user) {
+        window.location.href = 'login.html?redirect=donate.html';
+    } else {
+        // Update Sidebar UI
+        const displayName = user.displayName || user.email || 'User';
+        if (userNameSpan) userNameSpan.textContent = displayName;
+        if (userRole) userRole.textContent = 'User';
+
+        if (userAvatar) {
+            if (displayName && displayName !== 'User') {
+                userAvatar.innerHTML = `<span style="font-size: 16px; font-weight: 700;">${displayName.charAt(0).toUpperCase()}</span>`;
+            } else {
+                userAvatar.innerHTML = '<span style="font-size: 16px; font-weight: 700;">U</span>';
+            }
+        }
+
+        if (userProfile) userProfile.style.cursor = 'pointer';
+    }
+});
 
 /**
  * Load blood inventory from database
@@ -271,8 +285,7 @@ async function handleSearch() {
  * Initialize the hospital dashboard
  */
 function initializeHospitalDashboard() {
-    // Initialize with logged-out state first
-    initializeLoggedOutState();
+
 
     // Mobile menu toggle
     mobileMenuToggle.addEventListener('click', () => {
@@ -285,6 +298,8 @@ function initializeHospitalDashboard() {
             window.location.href = 'login.html';
         }
     });
+
+
 
     // Filter tabs
     const tabButtons = document.querySelectorAll('.tab-button');
@@ -322,7 +337,7 @@ function initializeHospitalDashboard() {
             const displayName = user.displayName || user.email || 'User';
 
             userNameSpan.textContent = displayName;
-            userRole.textContent = 'Hospital Staff';
+            userRole.textContent = 'User';
 
             if (displayName && displayName !== 'User') {
                 userAvatar.innerHTML = `<span style="font-size: 16px; font-weight: 700;">${displayName.charAt(0).toUpperCase()}</span>`;
@@ -335,12 +350,49 @@ function initializeHospitalDashboard() {
 
             // Load inventory
             loadBloodInventory();
-        } else {
-            initializeLoggedOutState();
-            // Load inventory even when not logged in
-            loadBloodInventory();
         }
     });
+
+    // Profile Modal Logic
+    function openProfileModal() {
+        const user = getCurrentUser();
+        if (user) {
+            // Update modal content
+            document.getElementById('profileName').textContent = user.displayName || user.email || 'User';
+            document.getElementById('profileEmail').textContent = user.email || '-';
+            document.getElementById('profileDisplayName').textContent = user.displayName || '-';
+            document.getElementById('profileEmailValue').textContent = user.email || '-';
+
+            // Set avatar
+            const profileAvatarLarge = document.getElementById('profileAvatarLarge');
+            if (user.displayName) {
+                profileAvatarLarge.innerHTML = `<span style="font-size: 32px; font-weight: 400;">${user.displayName.charAt(0).toUpperCase()}</span>`;
+            } else {
+                profileAvatarLarge.innerHTML = '<span style="font-size: 32px; font-weight: 400;">U</span>';
+            }
+
+            // Set member since
+            if (user.metadata && user.metadata.creationTime) {
+                const createdDate = new Date(user.metadata.creationTime);
+                document.getElementById('profileMemberSince').textContent = createdDate.toLocaleDateString();
+            } else {
+                document.getElementById('profileMemberSince').textContent = '-';
+            }
+
+            profileModal.style.display = 'flex';
+        }
+    }
+
+    if (userProfile) {
+        userProfile.addEventListener('click', openProfileModal);
+    }
+
+    if (closeProfileModal) {
+        closeProfileModal.addEventListener('click', () => {
+            profileModal.style.display = 'none';
+        });
+    }
+
 
     // Logout
     logoutBtn.addEventListener('click', async () => {

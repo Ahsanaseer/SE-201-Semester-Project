@@ -310,6 +310,47 @@ function initializeHistoryPage() {
         }
     });
 
+    // Profile Modal Logic
+    function openProfileModal() {
+        const user = getCurrentUser();
+        if (user) {
+            // Update modal content
+            document.getElementById('profileName').textContent = user.displayName || user.email || 'User';
+            document.getElementById('profileEmail').textContent = user.email || '-';
+            document.getElementById('profileDisplayName').textContent = user.displayName || '-';
+            document.getElementById('profileEmailValue').textContent = user.email || '-';
+
+            // Set avatar
+            const profileAvatarLarge = document.getElementById('profileAvatarLarge');
+            if (user.displayName) {
+                profileAvatarLarge.innerHTML = `<span style="font-size: 32px; font-weight: 400;">${user.displayName.charAt(0).toUpperCase()}</span>`;
+            } else {
+                profileAvatarLarge.innerHTML = '<span style="font-size: 32px; font-weight: 400;">U</span>';
+            }
+
+            // Set member since
+            if (user.metadata && user.metadata.creationTime) {
+                const createdDate = new Date(user.metadata.creationTime);
+                document.getElementById('profileMemberSince').textContent = createdDate.toLocaleDateString();
+            } else {
+                document.getElementById('profileMemberSince').textContent = '-';
+            }
+
+            profileModal.style.display = 'flex';
+        }
+    }
+
+    if (userProfile) {
+        userProfile.addEventListener('click', openProfileModal);
+    }
+
+    if (closeProfileModal) {
+        closeProfileModal.addEventListener('click', () => {
+            profileModal.style.display = 'none';
+        });
+    }
+
+
     // Tab buttons
     const tabButtons = document.querySelectorAll('.tab-button');
     tabButtons.forEach(button => {

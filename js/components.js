@@ -1,3 +1,6 @@
+import { getCurrentUser, logOut } from './login.js';
+import { showSuccessToast } from './toast.js';
+
 /**
  * Reusable Components for Pulse Chain GIKI
  * This file contains functions to dynamically inject reusable components (sidebar, top bar, etc.)
@@ -77,7 +80,7 @@ export function renderSidebar(activePage = 'home') {
                     <span class="menu-text">My History</span>
                 </a>
                 <a href="#" class="menu-item ${activePage === 'profile' ? 'active' : ''}" data-page="profile">
-                    <span class="menu-icon">
+                    <span class="menu-icon" id="userProfileSideBar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -246,6 +249,107 @@ export function renderProfileModal() {
 }
 
 /**
+ * Sets up event listeners for the profile modal
+ */
+function setupProfileModalEvents() {
+    const profileModal = document.getElementById('profileModal');
+    const closeProfileModal = document.getElementById('closeProfileModal');
+    const profileLogoutBtn = document.getElementById('profileLogoutBtn');
+    const userProfile = document.getElementById('userProfile');
+    const profileMenuItem = document.querySelector('.menu-item[data-page="profile"]');
+
+    if (!profileModal) return;
+
+    // Function to open profile modal
+    const openProfileModal = () => {
+        const user = getCurrentUser();
+        if (!user) {
+            // If not logged in, redirect to login
+            window.location.href = 'login.html';
+            return;
+        }
+
+        // Update modal content with user data
+        if (document.getElementById('profileName')) document.getElementById('profileName').textContent = user.displayName || user.email || 'User';
+        if (document.getElementById('profileEmail')) document.getElementById('profileEmail').textContent = user.email || '-';
+        if (document.getElementById('profileDisplayName')) document.getElementById('profileDisplayName').textContent = user.displayName || '-';
+        if (document.getElementById('profileEmailValue')) document.getElementById('profileEmailValue').textContent = user.email || '-';
+
+        // Set avatar
+        const profileAvatarLarge = document.getElementById('profileAvatarLarge');
+        if (profileAvatarLarge) {
+            if (user.displayName) {
+                profileAvatarLarge.innerHTML = `<span style="font-size: 32px; font-weight: 400;">${user.displayName.charAt(0).toUpperCase()}</span>`;
+            } else {
+                profileAvatarLarge.innerHTML = '<span style="font-size: 32px; font-weight: 400;">U</span>';
+            }
+        }
+
+        // Set member since
+        if (document.getElementById('profileMemberSince')) {
+            if (user.metadata && user.metadata.creationTime) {
+                const createdDate = new Date(user.metadata.creationTime);
+                document.getElementById('profileMemberSince').textContent = createdDate.toLocaleDateString();
+            } else {
+                document.getElementById('profileMemberSince').textContent = '-';
+            }
+        }
+
+        profileModal.style.display = 'flex';
+    };
+
+    // Event listeners for opening modal
+    if (userProfile) {
+        // Clone and replace to remove existing listeners (prevent duplicates)
+        const newUserProfile = userProfile.cloneNode(true);
+        userProfile.parentNode.replaceChild(newUserProfile, userProfile);
+        newUserProfile.addEventListener('click', openProfileModal);
+    }
+
+    if (profileMenuItem) {
+        // Clone and replace to remove existing listeners
+        const newProfileMenuItem = profileMenuItem.cloneNode(true);
+        profileMenuItem.parentNode.replaceChild(newProfileMenuItem, profileMenuItem);
+        newProfileMenuItem.addEventListener('click', (e) => {
+            e.preventDefault();
+            openProfileModal();
+        });
+    }
+
+    // Close modal
+    if (closeProfileModal) {
+        closeProfileModal.addEventListener('click', () => {
+            profileModal.style.display = 'none';
+        });
+    }
+
+    // Close on click outside
+    window.addEventListener('click', (e) => {
+        if (e.target === profileModal) {
+            profileModal.style.display = 'none';
+        }
+    });
+
+    // Logout logic
+    if (profileLogoutBtn) {
+        // Clone and replace to remove existing listeners
+        const newLogoutBtn = profileLogoutBtn.cloneNode(true);
+        profileLogoutBtn.parentNode.replaceChild(newLogoutBtn, profileLogoutBtn);
+
+        newLogoutBtn.addEventListener('click', async () => {
+            const result = await logOut();
+            if (result.success) {
+                sessionStorage.removeItem('adminLoggedIn');
+                sessionStorage.removeItem('adminEmail');
+                profileModal.style.display = 'none';
+                showSuccessToast('Logged out successfully!');
+                // UI updates will be handled by onAuthStateChange in the respective pages
+            }
+        });
+    }
+}
+
+/**
  * Initializes all components for a dashboard page
  * @param {Object} config - Configuration object
  * @param {string} config.activePage - The current active page
@@ -259,7 +363,6 @@ export function initializeDashboardComponents(config = {}) {
         searchPlaceholder = 'Search donors, requests...'
     } = config;
 
-    // 1. Inject Shimmer Overlay
     // 1. Shimmer Overlay is now in HTML to prevent FOUC
 
     // 2. Hide Main Content initially
@@ -274,7 +377,10 @@ export function initializeDashboardComponents(config = {}) {
     renderMobileMenuToggle();
     renderProfileModal();
 
-    // 4. Synchronize and Reveal (1 second delay)
+    // 4. Setup Event Listeners (Profile Modal, etc.)
+    setupProfileModalEvents();
+
+    // 5. Synchronize and Reveal (1 second delay)
     setTimeout(() => {
         const overlay = document.getElementById('shimmerOverlay');
         if (overlay) {
