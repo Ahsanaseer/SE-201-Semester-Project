@@ -324,29 +324,7 @@
             }
         }
 
-        // Open profile modal when clicking profile section
-        userProfile.addEventListener('click', openProfileModal);
 
-        // Open profile modal when clicking profile menu item
-        const profileMenuItem = document.querySelector('.menu-item[data-page="profile"]');
-        if (profileMenuItem) {
-            profileMenuItem.addEventListener('click', (e) => {
-                e.preventDefault();
-                openProfileModal();
-            });
-        }
-
-        // Close profile modal
-        closeProfileModal.addEventListener('click', () => {
-            profileModal.style.display = 'none';
-        });
-
-        // Close profile modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === profileModal) {
-                profileModal.style.display = 'none';
-            }
-        });
 
         // Logout from profile modal
         profileLogoutBtn.addEventListener('click', async () => {
