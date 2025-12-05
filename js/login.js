@@ -4,7 +4,8 @@ import {
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
-    updateProfile
+    updateProfile,
+    sendPasswordResetEmail
 } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 import { auth } from './firebase-config.js';
 import { showSuccessToast, showErrorToast } from './toast.js';
@@ -79,6 +80,24 @@ export async function logOut() {
 }
 
 /**
+ * Send password reset email
+ */
+export async function resetPassword(email) {
+    try {
+        await sendPasswordResetEmail(auth, email);
+        return { success: true };
+    } catch (error) {
+        let errorMessage = error.message;
+        if (error.code === 'auth/user-not-found') {
+            errorMessage = 'No user found with this email address.';
+        } else if (error.code === 'auth/invalid-email') {
+            errorMessage = 'Invalid email address.';
+        }
+        return { success: false, error: errorMessage };
+    }
+}
+
+/**
  * Get current user
  */
 export function getCurrentUser() {
@@ -110,6 +129,12 @@ const switchToSignup = document.getElementById('switchToSignup');
 const switchToLogin = document.getElementById('switchToLogin');
 const alertContainer = document.getElementById('alertContainer');
 
+// Modal Elements
+const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+const closeModal = document.getElementById('closeModal');
+const resetPasswordForm = document.getElementById('resetPasswordForm');
+const resetEmailInput = document.getElementById('resetEmail');
+
 const signinForm = document.getElementById('signinForm');
 const signupForm = document.getElementById('signupForm');
 
@@ -122,6 +147,8 @@ const confirmPasswordInput = document.getElementById('confirmPassword');
 
 // Only initialize login page UI if elements exist (i.e., we're on login.html)
 if (loginCard && signupCard && signinForm && signupForm) {
+    console.log("Login page elements found, initializing...");
+
     // Helper functions for inline errors
     function showInputError(inputId, message) {
         const input = document.getElementById(inputId);
@@ -196,6 +223,71 @@ if (loginCard && signupCard && signinForm && signupForm) {
         loginCard.classList.add('active');
         clearAllErrors();
     });
+
+    // Forgot Password Modal Logic
+    const forgotPasswordLink = document.querySelector('.forgot-password');
+    if (forgotPasswordLink && forgotPasswordModal) {
+        console.log("Forgot password link and modal found, attaching listener");
+        forgotPasswordLink.addEventListener('click', (e) => {
+            console.log("Forgot password clicked");
+            e.preventDefault();
+            forgotPasswordModal.classList.add('active');
+            // Pre-fill email if available
+            if (document.getElementById('loginEmail').value) {
+                resetEmailInput.value = document.getElementById('loginEmail').value;
+            }
+            clearAllErrors();
+        });
+
+        const closeResetModal = () => {
+            forgotPasswordModal.classList.remove('active');
+            resetPasswordForm.reset();
+            clearAllErrors();
+        };
+
+        if (closeModal) {
+            closeModal.addEventListener('click', closeResetModal);
+        }
+
+        // Close on outside click
+        forgotPasswordModal.addEventListener('click', (e) => {
+            if (e.target === forgotPasswordModal) {
+                closeResetModal();
+            }
+        });
+
+        // Handle Reset Submission
+        resetPasswordForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearAllErrors();
+
+            const email = resetEmailInput.value;
+            if (!email) {
+                showInputError('resetEmail', 'Please enter your email');
+                return;
+            }
+
+            const submitBtn = resetPasswordForm.querySelector('button[type="submit"]');
+            setLoadingState(submitBtn, true);
+
+            const result = await resetPassword(email);
+
+            setLoadingState(submitBtn, false);
+
+            if (result.success) {
+                showSuccessToast('Password reset link sent! Check your email.');
+                closeResetModal();
+            } else {
+                if (result.error.includes('No user found')) {
+                    showInputError('resetEmail', 'No account found with this email');
+                } else if (result.error.includes('Invalid email')) {
+                    showInputError('resetEmail', 'Invalid email format');
+                } else {
+                    showErrorToast(result.error || 'Failed to send reset link');
+                }
+            }
+        });
+    }
 
     // Password visibility toggles
     function setupPasswordToggle(toggle, input) {
@@ -337,3 +429,4 @@ if (loginCard && signupCard && signinForm && signupForm) {
         }
     });
 }
+

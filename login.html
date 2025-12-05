@@ -146,6 +146,24 @@
         </div>
     </div>
 
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div class="login-header">
+                <h1>Reset Password</h1>
+                <p>Enter your email to receive a reset link</p>
+            </div>
+            <form id="resetPasswordForm" class="login-form">
+                <div class="input-group">
+                    <input required="" type="email" id="resetEmail" name="resetEmail" autocomplete="off" class="input">
+                    <label class="user-label" for="resetEmail">Email</label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block sign-in-btn">Send Reset Link</button>
+            </form>
+        </div>
+    </div>
+
     <script type="module" src="js/login.js"></script>
 </body>
 
