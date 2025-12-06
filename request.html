@@ -200,7 +200,7 @@
                             // Check auth state
                             onAuthStateChange((user) => {
                                 if (!user) {
-                                    window.location.href = 'login.html?redirect=request.html';
+                                    window.location.href = `${window.getPath('login')}?redirect=${window.getPath('request')}`;
                                 } else {
                                     // Update Sidebar UI
                                     const displayName = user.displayName || user.email || 'User';

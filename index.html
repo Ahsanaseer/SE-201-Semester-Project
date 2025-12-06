@@ -90,10 +90,11 @@
                     <p class="hero-description">Join our community of donors and help save lives. Every donation makes a
                         difference. Register as a donor or request blood when needed.</p>
                     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                        <a href="donate.html" class="hero-button"
-                            style="text-decoration: none; display: inline-block;">Register as Donor</a>
-                        <a href="request.html" class="hero-button"
-                            style="text-decoration: none; display: inline-block;">Request Blood</a>
+                        <a href="javascript:void(0)" onclick="window.location.href=window.getPath('donate')"
+                            class="hero-button" style="text-decoration: none; display: inline-block;">Register as
+                            Donor</a>
+                        <a href="javascript:void(0)" onclick="window.location.href=window.getPath('request')"
+                            class="hero-button" style="text-decoration: none; display: inline-block;">Request Blood</a>
                     </div>
                 </div>
 
@@ -104,8 +105,8 @@
                     </div>
                     <div
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 24px;">
-                        <a href="donate.html" class="stat-card"
-                            style="text-decoration: none; color: inherit; cursor: pointer;">
+                        <a href="javascript:void(0)" onclick="window.location.href=window.getPath('donate')"
+                            class="stat-card" style="text-decoration: none; color: inherit; cursor: pointer;">
                             <div style="width: 48px; height: 48px; margin: 0 auto 16px; color: var(--accent-purple);">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -121,8 +122,8 @@
                                 Register yourself as a blood donor and help save lives
                             </div>
                         </a>
-                        <a href="request.html" class="stat-card"
-                            style="text-decoration: none; color: inherit; cursor: pointer;">
+                        <a href="javascript:void(0)" onclick="window.location.href=window.getPath('request')"
+                            class="stat-card" style="text-decoration: none; color: inherit; cursor: pointer;">
                             <div style="width: 48px; height: 48px; margin: 0 auto 16px; color: var(--accent-purple);">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -226,7 +227,7 @@
         // Function to open profile modal
         function openProfileModal() {
             if (!isLoggedIn) {
-                window.location.href = 'login.html';
+                window.location.href = window.getPath('login');
             } else {
                 // Update profile modal with current user data
                 const user = getCurrentUser();

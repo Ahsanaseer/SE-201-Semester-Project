@@ -220,7 +220,7 @@
         // Check auth state
         onAuthStateChange((user) => {
             if (!user) {
-                window.location.href = 'login.html?redirect=donate.html';
+                window.location.href = `${window.getPath('login')}?redirect=${window.getPath('donate')}`;
             } else {
                 // Update Sidebar UI
                 const displayName = user.displayName || user.email || 'User';

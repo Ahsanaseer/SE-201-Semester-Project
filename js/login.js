@@ -10,9 +10,13 @@ import {
 import { auth } from './firebase-config.js';
 import { showSuccessToast, showErrorToast } from './toast.js';
 
-// Admin credentials (hardcoded)
 const ADMIN_EMAIL = 'admin@gmail.com';
 const ADMIN_PASSWORD = 'admin123@';
+
+// Helper to check environment
+const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+// Helper to get correct path
+const getPath = (path) => isLocal ? `${path}.html` : path;
 
 /**
  * Sign up a new user with name, email and password
@@ -336,7 +340,7 @@ if (loginCard && signupCard && signinForm && signupForm) {
 
                 showSuccessToast('Admin login successful! Redirecting...');
                 setTimeout(() => {
-                    window.location.href = 'admin-dashboard.html?admin=true';
+                    window.location.href = `${getPath('admin-dashboard')}?admin=true`;
                 }, 1000);
             } else {
                 // Regular user login
@@ -347,7 +351,7 @@ if (loginCard && signupCard && signinForm && signupForm) {
                 const redirectUrl = urlParams.get('redirect');
 
                 setTimeout(() => {
-                    window.location.href = redirectUrl || 'index.html';
+                    window.location.href = redirectUrl || getPath('index');
                 }, 1000);
             }
         } else {
@@ -413,7 +417,7 @@ if (loginCard && signupCard && signinForm && signupForm) {
             const redirectUrl = urlParams.get('redirect');
 
             setTimeout(() => {
-                window.location.href = redirectUrl || 'index.html';
+                window.location.href = redirectUrl || getPath('index');
             }, 2000);
         } else {
             // Handle Firebase errors inline

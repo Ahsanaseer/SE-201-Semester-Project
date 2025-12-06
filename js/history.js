@@ -284,8 +284,8 @@ function displayEmptyState(message) {
             <div class="empty-state-title">No History Found</div>
             <div class="empty-state-description">${message}</div>
             <div class="empty-state-actions">
-                <a href="donate.html" class="btn btn-primary">Donate Blood</a>
-                <a href="request.html" class="btn btn-secondary">Request Blood</a>
+                <a href="${window.getPath('donate')}" class="btn btn-primary">Donate Blood</a>
+                <a href="${window.getPath('request')}" class="btn btn-secondary">Request Blood</a>
             </div>
         </div>
     `;
@@ -303,7 +303,7 @@ function initializeHistoryPage() {
     // User profile click - redirect to login if not logged in
     userProfile.addEventListener('click', () => {
         if (!isLoggedIn) {
-            window.location.href = 'login.html';
+            window.location.href = window.getPath('login');
         }
     });
 
@@ -352,7 +352,7 @@ function initializeHistoryPage() {
         } else {
             initializeLoggedOutState();
             // Redirect to login if not authenticated
-            window.location.href = 'login.html';
+            window.location.href = window.getPath('login');
         }
     });
 
@@ -363,7 +363,7 @@ function initializeHistoryPage() {
             sessionStorage.removeItem('adminLoggedIn');
             sessionStorage.removeItem('adminEmail');
             showSuccessToast('Logged out successfully!');
-            window.location.href = 'login.html';
+            window.location.href = window.getPath('login');
         }
     });
 

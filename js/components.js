@@ -11,6 +11,15 @@ import { showSuccessToast } from './toast.js';
  * Renders the sidebar component
  * @param {string} activePage - The current active page ('home', 'hospital-dashboard', 'donate', 'request', 'history', 'profile')
  */
+// Helper to check environment
+const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+
+// Helper to get correct path
+const getPath = (path) => isLocal ? `${path}.html` : path;
+
+// Expose to window for other scripts (since we don't have a bundler)
+window.getPath = getPath;
+
 export function renderSidebar(activePage = 'home') {
     const sidebarContainer = document.getElementById('sidebar-container');
     if (!sidebarContainer) {
@@ -26,7 +35,7 @@ export function renderSidebar(activePage = 'home') {
             </div>
 
             <nav class="sidebar-menu">
-                <a href="index.html" class="menu-item ${activePage === 'home' ? 'active' : ''}" data-page="dashboard">
+                <a href="${getPath('index')}" class="menu-item ${activePage === 'home' ? 'active' : ''}" data-page="dashboard">
                     <span class="menu-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -36,7 +45,7 @@ export function renderSidebar(activePage = 'home') {
                     </span>
                     <span class="menu-text">Home</span>
                 </a>
-                <a href="hospital-dashboard.html" class="menu-item ${activePage === 'hospital-dashboard' ? 'active' : ''}">
+                <a href="${getPath('hospital-dashboard')}" class="menu-item ${activePage === 'hospital-dashboard' ? 'active' : ''}">
                     <span class="menu-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -47,7 +56,7 @@ export function renderSidebar(activePage = 'home') {
                     </span>
                     <span class="menu-text">Hospital Dashboard</span>
                 </a>
-                <a href="donate.html" class="menu-item ${activePage === 'donate' ? 'active' : ''}">
+                <a href="${getPath('donate')}" class="menu-item ${activePage === 'donate' ? 'active' : ''}">
                     <span class="menu-icon" style="display: flex; align-items: center; justify-content: center;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -59,7 +68,7 @@ export function renderSidebar(activePage = 'home') {
                     </span>
                     <span class="menu-text">Donate Blood</span>
                 </a>
-                <a href="request.html" class="menu-item ${activePage === 'request' ? 'active' : ''}">
+                <a href="${getPath('request')}" class="menu-item ${activePage === 'request' ? 'active' : ''}">
                     <span class="menu-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -69,7 +78,7 @@ export function renderSidebar(activePage = 'home') {
                     </span>
                     <span class="menu-text">Request Blood</span>
                 </a>
-                <a href="history.html" class="menu-item ${activePage === 'history' ? 'active' : ''}">
+                <a href="${getPath('history')}" class="menu-item ${activePage === 'history' ? 'active' : ''}">
                     <span class="menu-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

@@ -507,14 +507,14 @@
                         loadData();
                         return;
                     }
-                    window.location.href = 'index.html';
+                    window.location.href = window.getPath('index');
                     return;
                 }
 
                 const adminStatus = await isAdmin();
                 if (!adminStatus && user.email !== 'admin@gmail.com') {
                     alert('Access denied. Admin privileges required.');
-                    window.location.href = 'index.html';
+                    window.location.href = window.getPath('index');
                     return;
                 }
 
@@ -1072,7 +1072,7 @@
             sessionStorage.removeItem('adminEmail');
             const result = await logOut();
             if (result.success || true) {
-                window.location.href = 'index.html';
+                window.location.href = window.getPath('index');
             }
         });
 
