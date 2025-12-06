@@ -1,1 +1,7 @@
-/*    /:splat.html    200
+/index                /index.html                200
+/request              /request.html              200
+/donate               /donate.html               200
+/admin-dashboard      /admin-dashboard.html      200
+/hospital-dashboard   /hospital-dashboard.html   200
+/history              /history.html              200
+/login                /login.html                200
