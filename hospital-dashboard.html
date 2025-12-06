@@ -102,29 +102,86 @@
                     <div style="margin-top: 24px;">
                         <div class="donor-search-filters">
                             <div class="form-group" style="margin-bottom: 0;">
-                                <label for="bloodGroupFilter">Blood Group</label>
-                                <select id="bloodGroupFilter" name="bloodGroupFilter" class="select-input"
-                                    style="width: 100%;">
-                                    <option value="">All Blood Groups</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
-                                </select>
+                                <label>Blood Group</label>
+                                <input type="hidden" id="bloodGroupFilter" value="">
+                                <div class="menu">
+                                    <div class="item">
+                                        <div class="link">
+                                            <span id="bloodGroupLabel">All Blood Groups</span>
+                                            <svg viewBox="0 0 360 360" xml:space="preserve">
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path id="XMLID_225_"
+                                                        d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <div class="submenu">
+                                            <div class="submenu-item">
+                                                <div class="submenu-link" data-value="" data-type="blood">All Blood
+                                                    Groups
+                                                </div>
+                                            </div>
+                                            <div class="submenu-item">
+                                                <div class="submenu-link" data-value="A+" data-type="blood">A+</div>
+                                            </div>
+                                            <div class="submenu-item">
+                                                <div class="submenu-link" data-value="A-" data-type="blood">A-</div>
+                                            </div>
+                                            <div class="submenu-item">
+                                                <div class="submenu-link" data-value="B+" data-type="blood">B+</div>
+                                            </div>
+                                            <div class="submenu-item">
+                                                <div class="submenu-link" data-value="B-" data-type="blood">B-</div>
+                                            </div>
+                                            <div class="submenu-item">
+                                                <div class="submenu-link" data-value="AB+" data-type="blood">AB+</div>
+                                            </div>
+                                            <div class="submenu-item">
+                                                <div class="submenu-link" data-value="AB-" data-type="blood">AB-</div>
+                                            </div>
+                                            <div class="submenu-item">
+                                                <div class="submenu-link" data-value="O+" data-type="blood">O+</div>
+                                            </div>
+                                            <div class="submenu-item">
+                                                <div class="submenu-link" data-value="O-" data-type="blood">O-</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group" style="margin-bottom: 0;">
-                                <label for="availabilityFilter">Availability</label>
-                                <select id="availabilityFilter" name="availabilityFilter" class="select-input"
-                                    style="width: 100%;">
-                                    <option value="Yes">Available Only</option>
-                                    <option value="No">Not Available</option>
-                                    <option value="">All</option>
-                                </select>
+                                <label>Availability</label>
+                                <input type="hidden" id="availabilityFilter" value="Yes">
+                                <div class="menu">
+                                    <div class="item">
+                                        <div class="link">
+                                            <span id="availabilityLabel">Available Only</span>
+                                            <svg viewBox="0 0 360 360" xml:space="preserve">
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path id="XMLID_225_"
+                                                        d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <div class="submenu">
+                                            <div class="submenu-item">
+                                                <div class="submenu-link" data-value="Yes" data-type="availability">
+                                                    Available Only</div>
+                                            </div>
+                                            <div class="submenu-item">
+                                                <div class="submenu-link" data-value="No" data-type="availability">Not
+                                                    Available</div>
+                                            </div>
+                                            <div class="submenu-item">
+                                                <div class="submenu-link" data-value="" data-type="availability">All
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group" style="margin-bottom: 0; display: flex; align-items: flex-end;">

@@ -151,20 +151,26 @@
                             </div>
 
                             <div class="form-group checkbox-group">
-                                <label class="checkbox-container">
-                                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
-                                    <span class="checkbox-label">I agree to share my information with those in need and
-                                        confirm that
-                                        all details provided are accurate *</span>
-                                </label>
+                                <div class="checkbox-container">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                                        <svg viewBox="0 0 64 64" height="18px" width="18px">
+                                            <path
+                                                d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16"
+                                                pathLength="575.0541381835938" class="path"></path>
+                                        </svg>
+                                    </label>
+                                    <label for="agreeTerms" class="checkbox-label"
+                                        style="cursor: pointer; margin-top: 2px;">
+                                        I agree to share my information with those in need and
+                                        confirm that all details provided are accurate <span class="required"
+                                            style="color: red;">*</span>
+                                    </label>
+                                </div>
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-block">Submit Donor Information</button>
                         </form>
-                    </div>
-
-                    <div class="back-to-dashboard-container">
-                        <a href="index.html" class="btn-back-to-dashboard">← Back to Dashboard</a>
                     </div>
                 </div>
             </div>

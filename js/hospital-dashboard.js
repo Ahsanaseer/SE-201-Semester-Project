@@ -137,7 +137,9 @@ function displayBloodInventory(donors) {
             card.addEventListener('click', () => {
                 const bloodGroup = card.getAttribute('data-blood-group');
                 document.getElementById('bloodGroupFilter').value = bloodGroup;
+                document.getElementById('bloodGroupLabel').textContent = bloodGroup;
                 document.getElementById('availabilityFilter').value = 'Yes';
+                document.getElementById('availabilityLabel').textContent = 'Available Only';
                 searchBtn.click();
                 // Scroll to donors section
                 document.getElementById('donorsContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -309,6 +311,26 @@ function initializeHospitalDashboard() {
             button.classList.add('active');
             currentFilter = button.getAttribute('data-filter');
             displayBloodInventory(allDonorsData);
+        });
+    });
+
+    // Custom Dropdown Logic
+    const submenuLinks = document.querySelectorAll('.submenu-link');
+    submenuLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const value = link.getAttribute('data-value');
+            const type = link.getAttribute('data-type');
+            const text = link.textContent.trim();
+
+            if (type === 'blood') {
+                document.getElementById('bloodGroupFilter').value = value;
+                document.getElementById('bloodGroupLabel').textContent = text;
+            } else if (type === 'availability') {
+                document.getElementById('availabilityFilter').value = value;
+                document.getElementById('availabilityLabel').textContent = text;
+            }
         });
     });
 

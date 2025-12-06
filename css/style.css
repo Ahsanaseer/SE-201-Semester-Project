@@ -89,6 +89,7 @@ body {
     cursor: pointer;
     border-radius: 0.5rem;
     margin: 1px 0;
+    transition: all 0.3s ease;
 }
 
 .menu-item:hover {
@@ -96,7 +97,7 @@ body {
     color: var(--text-primary);
     text-decoration: none;
     border-radius: 0.5rem;
-    margin: 0 10px;
+    margin: 1px 10px;
 }
 
 .menu-item.active {
@@ -490,8 +491,8 @@ body {
     left: 0;
     width: 240px;
     background: var(--sidebar-bg);
-    border-top: 1px solid var(--card-border);
     padding: 12px;
+    border-right: 1px solid var(--border-color);
 }
 
 .user-profile {
@@ -926,7 +927,7 @@ body {
 .menu .item .submenu {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     position: absolute;
     top: 100%;
     border-radius: 0 0 16px 16px;
@@ -944,19 +945,39 @@ body {
     background: var(--bg-card);
 }
 
+.menu .item:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    border-top: transparent;
+    border-color: var(--border-color);
+}
+
 .menu .item.active .submenu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
     pointer-events: auto;
     border-top: transparent;
-    border-color: #ffffff;
+    border-color: var(--border-color);
+}
+
+.menu .item:hover .link {
+    color: #000000;
+    border-radius: 16px 16px 0 0;
+    border-color: var(--border-color);
 }
 
 .menu .item.active .link {
     color: #000000;
     border-radius: 16px 16px 0 0;
-    border-color: #ffffff;
+    border-color: var(--border-color);
+}
+
+.menu .item:hover .link::after {
+    transform: scaleX(1);
+    transform-origin: right;
 }
 
 .menu .item.active .link::after {
@@ -964,9 +985,18 @@ body {
     transform-origin: right;
 }
 
+.menu .item:hover .link svg {
+    fill: #000000;
+    transform: rotate(-180deg);
+}
+
 .menu .item.active .link svg {
     fill: #000000;
     transform: rotate(-180deg);
+}
+
+.submenu .submenu-item {
+    width: 100%;
 }
 
 .submenu .submenu-link {

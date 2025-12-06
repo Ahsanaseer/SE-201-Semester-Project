@@ -350,12 +350,41 @@ function setupProfileModalEvents() {
 }
 
 /**
+ * Sets up global search functionality
+ */
+function setupGlobalSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const searchIcon = document.querySelector('.search-icon');
+
+    if (!searchInput) return;
+
+    const performSearch = () => {
+        const query = searchInput.value.trim();
+        if (query) {
+            window.location.href = `request.html?q=${encodeURIComponent(query)}`;
+        }
+    };
+
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    if (searchIcon) {
+        searchIcon.addEventListener('click', performSearch);
+        searchIcon.style.cursor = 'pointer';
+    }
+}
+
+/**
  * Initializes all components for a dashboard page
  * @param {Object} config - Configuration object
  * @param {string} config.activePage - The current active page
  * @param {string} config.headerTitle - Title for the top header
  * @param {string} config.searchPlaceholder - Placeholder for search bar
  */
+
 export function initializeDashboardComponents(config = {}) {
     const {
         activePage = 'home',
@@ -379,6 +408,7 @@ export function initializeDashboardComponents(config = {}) {
 
     // 4. Setup Event Listeners (Profile Modal, etc.)
     setupProfileModalEvents();
+    setupGlobalSearch();
 
     // 5. Synchronize and Reveal (1 second delay)
     setTimeout(() => {

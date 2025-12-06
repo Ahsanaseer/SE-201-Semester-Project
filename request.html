@@ -318,32 +318,9 @@
         }
 
         // Custom Dropdown Logic
-        const dropdownBtns = document.querySelectorAll('.menu .link');
         const submenuLinks = document.querySelectorAll('.submenu-link');
 
-        // Toggle dropdown on click
-        dropdownBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent document click from closing immediately
-                const item = btn.closest('.item');
-
-                // Close other dropdowns
-                document.querySelectorAll('.menu .item').forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-
-                item.classList.toggle('active');
-            });
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', () => {
-            document.querySelectorAll('.menu .item').forEach(item => {
-                item.classList.remove('active');
-            });
-        });
+        // Note: Dropdown visibility is now handled by CSS hover state in style.css
 
         submenuLinks.forEach(link => {
             link.addEventListener('click', (e) => {
@@ -360,12 +337,7 @@
                     document.getElementById('availabilityFilter').value = value;
                     document.getElementById('availabilityLabel').textContent = text;
                 }
-
-                // Close the dropdown after selection
-                const item = link.closest('.item');
-                if (item) {
-                    item.classList.remove('active');
-                }
+                // Close the dropdown after selection (handled by moving mouse away in hover mode)
             });
         });
 
@@ -415,6 +387,62 @@
                 }
             }
         });
+
+        // Handle URL Search Query
+        setTimeout(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('q');
+
+            if (searchQuery) {
+                // Populate Global Search Input
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.value = searchQuery;
+                }
+
+                // Check if query matches a blood group
+                const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+                const normalizedQuery = searchQuery.toUpperCase().trim();
+
+                if (bloodGroups.includes(normalizedQuery)) {
+                    // Set Blood Group Filter
+                    document.getElementById('bloodGroupFilter').value = normalizedQuery;
+                    document.getElementById('bloodGroupLabel').textContent = normalizedQuery;
+
+                    // Trigger Search
+                    searchBtn.click();
+                } else {
+                    // Perform Generic Text Search
+                    donorsContainer.innerHTML = `
+                        <div class="loader-container">
+                            <span class="loader"></span>
+                            <span class="loader-text">Searching for "${searchQuery}"...</span>
+                        </div>
+                    `;
+
+                    getAllDonors().then(result => {
+                        if (result.success) {
+                            const lowerQuery = searchQuery.toLowerCase();
+                            // Filter donors by Name, Contact, or Medical Notes
+                            const filtered = result.donors.filter(d =>
+                                (d.fullName && d.fullName.toLowerCase().includes(lowerQuery)) ||
+                                (d.contact && d.contact.includes(searchQuery)) ||
+                                (d.medicalNote && d.medicalNote.toLowerCase().includes(lowerQuery))
+                            );
+
+                            displayDonors(filtered);
+                        } else {
+                            showErrorToast('Failed to fetch donors.');
+                            donorsContainer.innerHTML = `
+                                <div class="empty-state">
+                                    <p>Failed to fetch donors. Please try again.</p>
+                                </div>
+                            `;
+                        }
+                    });
+                }
+            }
+        }, 500); // Small delay to ensure components are rendered
     </script>
 </body>
 
