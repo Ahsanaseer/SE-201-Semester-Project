@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: radial-gradient(130% 120% at 15% 10%, #1d2429 0%, #050607 70%, #050607 100%);
+    background: radial-gradient(130% 120% at 15% 10%, #1a0505 0%, #000000 70%, #000000 100%);
     color: var(--text-primary);
     overflow-x: hidden;
 }
@@ -37,12 +37,12 @@ body {
 .logo-icon {
     width: 32px;
     height: 32px;
-    background: #ffffff;
+    background: var(--accent-red);
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000000;
+    color: #ffffff;
 }
 
 .logo-icon svg {
@@ -102,8 +102,8 @@ body {
 
 .menu-item.active {
     background: var(--sidebar-active);
-    color: var(--text-primary);
-    border-left-color: #ffffff;
+    color: var(--accent-red);
+    border-left-color: var(--accent-red);
     border-radius: 0.5rem;
     margin: 10px;
 }
@@ -139,7 +139,7 @@ body {
     padding: 0;
     min-width: 0;
     /* Critical for preventing flex item overflow */
-    background: radial-gradient(130% 120% at 15% 10%, #1d2429 0%, #050607 70%, #050607 100%);
+    background: radial-gradient(130% 120% at 15% 10%, #291d1d 0%, #000000 70%, #000000 100%);
 }
 
 /* Top Header */
@@ -205,8 +205,8 @@ body {
 }
 
 .btn-connect {
-    background: #ffffff;
-    color: #000000;
+    background: var(--accent-red);
+    color: #ffffff;
     border: none;
     padding: 8px 16px;
     border-radius: 0.5rem;
@@ -219,7 +219,7 @@ body {
 }
 
 .btn-connect:hover {
-    background: #e0e0e0;
+    background: var(--accent-maroon);
     border-radius: 0.5rem;
 }
 
@@ -325,9 +325,9 @@ body {
 }
 
 .hero-button {
-    background: #ffffff;
+    background: var(--accent-red);
     border: 1px solid var(--card-border);
-    color: #000000;
+    color: #ffffff;
     padding: 10px 20px;
     border-radius: 0.5rem;
     font-size: 14px;
@@ -336,7 +336,7 @@ body {
 }
 
 .hero-button:hover {
-    background: #e0e0e0;
+    background: var(--accent-maroon);
     border-radius: 0.5rem;
 }
 
@@ -380,9 +380,9 @@ body {
 }
 
 .tab-button.active {
-    background: #ffffff;
-    border-color: #ffffff;
-    color: #000000;
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+    color: #ffffff;
     border-radius: 0.5rem;
 }
 
@@ -515,13 +515,13 @@ body {
     width: 32px;
     height: 32px;
     border-radius: 0.5rem;
-    background: #ffffff;
+    background: var(--accent-red);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 400;
     font-size: 14px;
-    color: #000000;
+    color: #ffffff;
 }
 
 .user-info {

@@ -39,18 +39,25 @@
     --card-border: #333333;
 
     /* Accent Colors */
-    --accent-blue: #ffffff;
-    --accent-dark-blue: #e0e0e0;
-    --accent-light-blue: #ffffff;
-    --accent-purple: #ffffff;
-    --accent-pink: #ffffff;
+    --accent-blue: #800000;
+    /* Replaced with Maroon */
+    --accent-dark-blue: #4a0404;
+    /* Replaced with Darker Maroon */
+    --accent-light-blue: #991b1b;
+    /* Replaced with Lighter Maroon */
+    --accent-purple: #800000;
+    /* Replaced with Maroon */
+    --accent-pink: #800000;
+    /* Replaced with Maroon */
+    --accent-red: #800000;
+    --accent-maroon: #4a0404;
 
     /* Gradients (now solid colors) */
-    --gradient-purple: #ffffff;
-    --gradient-blue: #ffffff;
+    --gradient-purple: #800000;
+    --gradient-blue: #800000;
 
     /* Shadows */
-    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow: rgba(128, 0, 0, 0.2);
 }
 
 body {
@@ -148,12 +155,12 @@ header p {
 }
 
 .btn-primary {
-    background: #ffffff;
-    color: #000000;
+    background: var(--accent-red);
+    color: #ffffff;
 }
 
 .btn-primary:hover {
-    background: #e0e0e0;
+    background: var(--accent-maroon);
 }
 
 .btn-secondary {
@@ -177,8 +184,8 @@ header p {
 .btn-back-to-dashboard {
     display: inline-block;
     padding: 10px 20px;
-    background: #ffffff;
-    color: #000000;
+    background: var(--accent-red);
+    color: #ffffff;
     text-decoration: none;
     border-radius: 0.5rem;
     font-weight: 400;
@@ -187,26 +194,26 @@ header p {
 }
 
 .btn-back-to-dashboard:hover {
-    background: #e0e0e0;
+    background: var(--accent-maroon);
     text-decoration: none;
 }
 
 .btn-danger {
-    background: #ffffff;
-    color: #000000;
+    background: var(--accent-red);
+    color: #ffffff;
 }
 
 .btn-danger:hover {
-    background: #e0e0e0;
+    background: var(--accent-maroon);
 }
 
 .btn-success {
-    background: #ffffff;
-    color: #000000;
+    background: #10b981;
+    color: #ffffff;
 }
 
 .btn-success:hover {
-    background: #e0e0e0;
+    background: #059669;
 }
 
 .btn-block {
@@ -339,9 +346,9 @@ select option {
 }
 
 .toast-error {
-    background: #ef4444;
+    background: var(--accent-red);
     color: #ffffff;
-    border-color: #dc2626;
+    border-color: var(--accent-maroon);
 }
 
 .toast-close {

@@ -139,7 +139,7 @@
 }
 
 .availability-status.unavailable::before {
-    background: #ef4444;
+    background: var(--accent-red);
 }
 
 /* Inventory Stats */

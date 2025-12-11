@@ -121,7 +121,7 @@
                     </button>
                     <button class="logout-icon-btn" id="logoutBtn" title="Logout">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            stroke="#800000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                             <polyline points="16 17 21 12 16 7" />
                             <line x1="21" y1="12" x2="9" y2="12" />
@@ -358,7 +358,7 @@
                 // Style confirm button based on action type
                 if (isDanger) {
                     confirmModalConfirm.className = 'btn';
-                    confirmModalConfirm.style.backgroundColor = '#ef4444';
+                    confirmModalConfirm.style.backgroundColor = '#800000';
                     confirmModalConfirm.style.color = '#ffffff';
                     confirmModalConfirm.style.border = 'none';
                 } else {
@@ -577,7 +577,7 @@
                     datasets: [{
                         data: bloodGroupData,
                         backgroundColor: [
-                            '#ef4444', '#f59e0b', '#10b981', '#3b82f6',
+                            '#800000', '#f59e0b', '#10b981', '#4a0404',
                             '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16'
                         ]
                     }]
@@ -605,7 +605,7 @@
                     labels: Object.keys(genderCounts),
                     datasets: [{
                         data: Object.values(genderCounts),
-                        backgroundColor: ['#3b82f6', '#ec4899', '#10b981']
+                        backgroundColor: ['#4a0404', '#ec4899', '#10b981']
                     }]
                 },
                 options: {
@@ -630,7 +630,7 @@
                     datasets: [{
                         label: 'Donors',
                         data: [availableCount, unavailableCount],
-                        backgroundColor: ['#10b981', '#ef4444']
+                        backgroundColor: ['#10b981', '#800000']
                     }]
                 },
                 options: {
@@ -672,8 +672,8 @@
                     datasets: [{
                         label: 'Donations',
                         data: donationsData,
-                        borderColor: '#3b82f6',
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderColor: '#4a0404',
+                        backgroundColor: 'rgba(74, 4, 4, 0.1)',
                         tension: 0.4,
                         fill: true
                     }]
@@ -717,8 +717,8 @@
                     datasets: [{
                         label: 'Requests',
                         data: requestsData,
-                        borderColor: '#ef4444',
-                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        borderColor: '#800000',
+                        backgroundColor: 'rgba(128, 0, 0, 0.1)',
                         tension: 0.4,
                         fill: true
                     }]
@@ -757,7 +757,7 @@
                     datasets: [{
                         label: 'Requests',
                         data: requestBloodGroupData,
-                        backgroundColor: '#ef4444'
+                        backgroundColor: '#800000'
                     }]
                 },
                 options: {
@@ -795,7 +795,7 @@
                     datasets: [{
                         label: 'Donations',
                         data: monthlyDonations,
-                        backgroundColor: '#3b82f6'
+                        backgroundColor: '#4a0404'
                     }, {
                         label: 'Requests',
                         data: monthlyRequests,

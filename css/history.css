@@ -48,8 +48,8 @@
 }
 
 .history-type-badge.request {
-    color: #ef4444;
-    background: rgba(239, 68, 68, 0.1);
+    color: var(--accent-red);
+    background: rgba(128, 0, 0, 0.1);
 }
 
 .history-date {
@@ -110,8 +110,8 @@
 }
 
 .status-badge.unavailable {
-    color: #ef4444;
-    background: rgba(239, 68, 68, 0.1);
+    color: var(--accent-red);
+    background: rgba(128, 0, 0, 0.1);
 }
 
 .status-badge.pending {

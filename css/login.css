@@ -28,7 +28,7 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: radial-gradient(130% 120% at 15% 10%, #1d2429 0%, #050607 70%, #050607 100%);
+    background: radial-gradient(130% 120% at 15% 10%, #1a0505 0%, #000000 70%, #000000 100%);
 }
 
 .login-card {
@@ -274,7 +274,7 @@
 .input:focus,
 input:valid {
     outline: none;
-    border: 1.5px solid #1a73e8;
+    border: 1.5px solid var(--accent-red);
 }
 
 .input:focus~label,
@@ -283,7 +283,7 @@ input:valid~label {
     background-color: var(--card-bg);
     /* Match card background */
     padding: 0 .2em;
-    color: #2196f3;
+    color: var(--accent-red);
 }
 
 /* Adjust password toggle position for new input style */
