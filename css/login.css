@@ -165,7 +165,8 @@
     text-decoration: underline;
 }
 
-.login-form .sign-in-btn {
+.login-form .sign-in-btn,
+.login-form .sign-up-btn {
     width: 100%;
     padding: 12px;
     font-size: 14px;
@@ -178,7 +179,8 @@
     cursor: pointer;
 }
 
-.login-form .sign-in-btn:hover {
+.login-form .sign-in-btn:hover,
+.login-form .sign-up-btn:hover {
     background: #e0e0e0;
     border-radius: 0.5rem;
 }
